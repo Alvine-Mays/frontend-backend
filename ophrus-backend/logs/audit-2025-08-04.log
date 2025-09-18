@@ -1,0 +1,22 @@
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-08-04 20:13:20.603"}
+{"level":"info","message":"🚀 Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-08-04 20:13:20.739"}
+{"level":"info","message":"⚙️ Mode: development","service":"ophrus-backend","timestamp":"2025-08-04 20:13:20.747"}
+{"level":"info","message":"🟢 Node.js version: v22.12.0","service":"ophrus-backend","timestamp":"2025-08-04 20:13:20.759"}
+{"level":"warn","message":"Identifiant non trouvé: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-08-04 20:19:38.315"}
+{"level":"warn","message":"Identifiant non trouvé: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-08-04 20:19:38.811"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 20:44:58.810"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 20:45:16.283"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:18:58.760"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:19:19.408"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:24:51.623"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:25:05.402"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:28:36.596"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:29:23.280"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:36:59.700"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:37:29.195"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:40:13.852"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:40:37.884"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:47:53.729"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:48:17.993"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 21:59:50.396"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-08-04 22:00:09.398"}

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 90
+    },
+    "auditLog": "D:\\ophrus-backend-frontend-dashboard-main\\ophrus-backend-frontend-dashboard-main\\Ophrus-immo\\logs\\.5a0f8678f929b62698d2552d84e248a460ceb0d7-audit.json",
+    "files": [
+        {
+            "date": 1751681983945,
+            "name": "D:\\ophrus-backend-frontend-dashboard-main\\ophrus-backend-frontend-dashboard-main\\Ophrus-immo\\logs\\audit-2025-07-05.log",
+            "hash": "53f4ebd3a35554730d9983a8404bebf4fa968c6f16fd26443296d1124da4b3f2"
+        }
+    ],
+    "hashType": "sha256"
+}

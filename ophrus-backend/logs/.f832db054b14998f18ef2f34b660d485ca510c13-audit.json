@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\.f832db054b14998f18ef2f34b660d485ca510c13-audit.json",
+    "files": [
+        {
+            "date": 1753778735830,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\performance-2025-07-29.log",
+            "hash": "8f042e1515a2befc793080c68cb48a548d80cf08f0666f7b6d338750d6975375"
+        },
+        {
+            "date": 1753862233884,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\performance-2025-07-30.log",
+            "hash": "52589a77f9f111c1d9833ea8e262daebab213df1925f3d6ce731631e85bb51d3"
+        },
+        {
+            "date": 1754331193449,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\performance-2025-08-04.log",
+            "hash": "7780030b7c06714dafbe64410f2a335ebb2d49e878d3404878a87510634d0613"
+        }
+    ],
+    "hashType": "sha256"
+}

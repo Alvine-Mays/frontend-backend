@@ -1,0 +1,386 @@
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Connexion à MongoDB...","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:07.635","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Démarrage de l'application Ophrus-Immo","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:08.788","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Mode: test","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:08.867","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Node: v22.12.0","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:08.952","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Connexion à MongoDB...","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:46.533","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Démarrage de l'application Ophrus-Immo","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:47.000","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Mode: test","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:47.082","version":"1.0.0"}
+{"environment":"test","hostname":"DESKTOP-I0PQ7F3","level":"info","message":"Node: v22.12.0","pid":2420,"service":"ophrus-backend","timestamp":"2025-07-09 10:02:47.210","version":"1.0.0"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:22:08.497"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:22:08.678"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:22:08.706"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:22:08.731"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:22:14.893"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:22:14.942"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:22:14.960"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:22:14.979"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:24:28.970"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:24:29.145"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:24:29.170"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:24:29.194"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:24:35.022"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:24:35.074"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:24:35.121"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:24:35.181"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:46:55.047"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:46:55.564"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:46:55.642"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:46:55.709"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:47:11.768"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:47:11.902"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:47:12.055"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:47:12.203"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:51:07.343"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:51:07.539"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:51:07.568"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:51:07.594"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:51:13.858"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:51:13.920"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:51:13.971"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:51:14.037"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:58:38.651"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 10:58:46.358"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:58:46.418"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:58:46.470"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:58:46.518"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 10:58:38.849"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 10:58:38.875"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 10:58:38.905"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:06:50.122"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:06:50.312"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 11:06:50.361"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:06:50.389"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:06:57.015"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:06:57.072"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 11:06:57.121"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:06:57.171"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:08:34.834"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:08:35.042"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 11:08:35.050"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:08:35.056"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:28:47.967"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:28:48.048"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 11:28:48.057"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:28:48.062"}
+{"0":"C","1":"a","10":"d","100":"r","101":"u","102":"s","103":"-","104":"i","105":"m","106":"m","107":"o","108":"\\","109":"u","11":" ","110":"t","111":"i","112":"l","113":"s","114":"\\","115":"s","116":"e","117":"n","118":"d","119":"E","12":"p","120":"m","121":"a","122":"i","123":"l","124":".","125":"j","126":"s","13":"a","14":"c","15":"k","16":"a","17":"g","18":"e","19":" ","2":"n","20":"'","21":"n","22":"o","23":"d","24":"e","25":"m","26":"a","27":"i","28":"l","29":"e","3":"n","30":"r","31":"-","32":"e","33":"x","34":"p","35":"r","36":"e","37":"s","38":"s","39":"-","4":"o","40":"h","41":"a","42":"n","43":"d","44":"l","45":"e","46":"b","47":"a","48":"r","49":"s","5":"t","50":"'","51":" ","52":"i","53":"m","54":"p","55":"o","56":"r","57":"t","58":"e","59":"d","6":" ","60":" ","61":"f","62":"r","63":"o","64":"m","65":" ","66":"C","67":":","68":"\\","69":"U","7":"f","70":"s","71":"e","72":"r","73":"s","74":"\\","75":"S","76":"E","77":"R","78":"V","79":"E","8":"i","80":"R","81":"-","82":"G","83":"O","84":"L","85":"D","86":"\\","87":"D","88":"o","89":"c","9":"n","90":"u","91":"m","92":"e","93":"n","94":"t","95":"s","96":"\\","97":"O","98":"p","99":"h","level":"warn","message":"Erreur lors de l'initialisation email:","service":"ophrus-backend","timestamp":"2025-07-09 11:28:51.785"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 11:28:51.793"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 11:28:57.145"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:52:32.209"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:52:32.716"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 11:52:32.736"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:52:32.745"}
+{"0":"C","1":"a","10":"d","100":"r","101":"u","102":"s","103":"-","104":"i","105":"m","106":"m","107":"o","108":"\\","109":"u","11":" ","110":"t","111":"i","112":"l","113":"s","114":"\\","115":"s","116":"e","117":"n","118":"d","119":"E","12":"p","120":"m","121":"a","122":"i","123":"l","124":".","125":"j","126":"s","13":"a","14":"c","15":"k","16":"a","17":"g","18":"e","19":" ","2":"n","20":"'","21":"n","22":"o","23":"d","24":"e","25":"m","26":"a","27":"i","28":"l","29":"e","3":"n","30":"r","31":"-","32":"e","33":"x","34":"p","35":"r","36":"e","37":"s","38":"s","39":"-","4":"o","40":"h","41":"a","42":"n","43":"d","44":"l","45":"e","46":"b","47":"a","48":"r","49":"s","5":"t","50":"'","51":" ","52":"i","53":"m","54":"p","55":"o","56":"r","57":"t","58":"e","59":"d","6":" ","60":" ","61":"f","62":"r","63":"o","64":"m","65":" ","66":"C","67":":","68":"\\","69":"U","7":"f","70":"s","71":"e","72":"r","73":"s","74":"\\","75":"S","76":"E","77":"R","78":"V","79":"E","8":"i","80":"R","81":"-","82":"G","83":"O","84":"L","85":"D","86":"\\","87":"D","88":"o","89":"c","9":"n","90":"u","91":"m","92":"e","93":"n","94":"t","95":"s","96":"\\","97":"O","98":"p","99":"h","level":"warn","message":"Erreur lors de l'initialisation email:","service":"ophrus-backend","timestamp":"2025-07-09 11:52:38.352"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 11:52:38.386"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 11:52:43.748"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:53:00.949"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:53:01.029"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 11:53:01.036"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:53:01.041"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 11:53:04.544"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 11:53:09.874"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 11:53:22.654"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 11:53:22.846"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 11:53:22.860"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 11:53:22.873"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 11:53:28.927"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 11:53:34.189"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:06:15.175"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:06:15.299"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 12:06:15.304"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:06:15.308"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 12:06:20.306"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:06:25.771"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:07:09.584"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:07:09.901"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 12:07:09.949"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:07:10.000"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:07:22.206"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:22:46.391"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:22:46.519"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 12:22:46.525"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:22:46.532"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 12:22:51.242"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:22:56.694"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:37:41.406"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:37:41.610"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 12:37:41.616"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:37:41.629"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 12:37:52.533"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:37:59.588"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:40:40.767"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:40:40.934"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 12:40:40.938"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:40:40.953"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 12:40:46.426"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:40:51.907"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 12:46:39.661"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 12:46:39.747"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 12:46:39.752"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 12:46:39.757"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 12:46:42.905"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 12:46:48.258"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 13:41:55.900"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 13:41:56.028"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 13:41:56.033"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 13:41:56.043"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 13:42:01.158"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 14:37:09.394"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 14:37:09.476"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 14:37:09.489"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 14:37:09.493"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 14:37:13.390"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 14:37:18.672"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 14:51:15.126"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 14:51:15.329"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 14:51:15.339"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 14:51:15.344"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 14:51:29.776"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 14:51:36.322"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:11:59.349"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:11:59.464"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 15:11:59.470"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:11:59.474"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 15:12:08.579"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:13:25.165"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:13:25.384"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 15:13:25.433"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:13:25.473"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:13:33.576"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:18:33.336"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:18:34.005"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 15:18:34.099"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:18:34.135"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:19:00.271"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:20:28.961"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:20:30.030"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 15:20:30.077"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:20:30.082"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 15:20:35.485"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:20:47.648"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:21:41.220"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:21:41.344"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 15:21:41.360"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:21:41.371"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 15:21:46.192"}
+{"level":"warn","message":"Route non trouvée: GET /api/users/register","service":"ophrus-backend","timestamp":"2025-07-09 15:25:21.777"}
+{"level":"warn","message":"Route non trouvée: GET /favicon.ico","service":"ophrus-backend","timestamp":"2025-07-09 15:25:26.035"}
+{"email":"servergold2012@gmail.com","level":"error","message":"Erreur lors de l'inscription: User validation failed: telephone: Numéro de téléphone invalide","service":"ophrus-backend","stack":"ValidationError: User validation failed: telephone: Numéro de téléphone invalide\n    at Document.invalidate (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3352:32)\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3113:17\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\schemaType.js:1410:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","timestamp":"2025-07-09 15:26:43.413"}
+{"level":"warn","message":"Email déjà utilisé: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 15:27:59.922"}
+{"email":"servergold2012@gmail.com","level":"error","message":"Erreur lors de l'inscription: User validation failed: telephone: Numéro de téléphone invalide","service":"ophrus-backend","stack":"ValidationError: User validation failed: telephone: Numéro de téléphone invalide\n    at Document.invalidate (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3352:32)\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3113:17\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\schemaType.js:1410:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","timestamp":"2025-07-09 15:32:14.213"}
+{"email":"xaxiho9965@bulmp3.com","level":"error","message":"Erreur lors de l'inscription: User validation failed: telephone: Numéro de téléphone invalide","service":"ophrus-backend","stack":"ValidationError: User validation failed: telephone: Numéro de téléphone invalide\n    at Document.invalidate (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3352:32)\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\document.js:3113:17\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\mongoose\\lib\\schemaType.js:1410:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","timestamp":"2025-07-09 15:35:01.780"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:41:47.257"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:42:03.774"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:42:42.943"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:43:26.740"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:44:05.377"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:44:11.889"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:45:16.893"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:45:17.992"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:45:35.289"}
+{"level":"info","message":"Reconnecté à MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:45:46.408"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:54:14.717"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:54:14.877"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 15:54:14.886"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:54:14.895"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 15:54:22.329"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 15:54:27.752"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 15:55:03.511"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 15:55:04.402"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 15:55:04.887"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 15:55:04.953"}
+{"level":"warn","message":"Configuration email manquante - les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 15:55:15.332"}
+{"email":"mayalachristgottlieb@gmail.com","level":"error","message":"Erreur lors de la demande de réinitialisation: sendEmail is not a function","service":"ophrus-backend","stack":"TypeError: sendEmail is not a function\n    at exports.requestPasswordReset (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\controllers\\userController.js:297:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-07-09 16:00:50.621"}
+{"level":"warn","message":"Email déjà utilisé: servergold2012@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 16:04:17.312"}
+{"level":"warn","message":"Email déjà utilisé: xaxiho9965@bulmp3.com","service":"ophrus-backend","timestamp":"2025-07-09 16:04:35.708"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 16:23:07.083"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 16:23:07.369"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 16:23:07.375"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 16:23:07.388"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 16:23:24.217"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 16:23:24.226"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 16:23:31.330"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 16:23:45.826"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 16:23:45.905"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 16:23:45.914"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 16:23:45.919"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 16:23:49.673"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 16:23:49.679"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 16:23:59.894"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 16:24:19.202"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 16:24:19.304"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 16:24:19.308"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 16:24:19.315"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 16:24:23.937"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 16:24:23.941"}
+{"level":"warn","message":"Email non trouvé pour réinitialisation: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 16:26:14.111"}
+{"level":"warn","message":"Email déjà utilisé: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 16:27:20.760"}
+{"email":"mayalachristgottlieb@gmail.com","level":"error","message":"Erreur lors de la demande de réinitialisation: sendEmail is not a function","service":"ophrus-backend","stack":"TypeError: sendEmail is not a function\n    at exports.requestPasswordReset (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\controllers\\userController.js:297:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-07-09 16:27:35.454"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:03:09.290"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:03:09.379"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:03:09.385"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:03:09.390"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:03:15.408"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:03:15.411"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:03:23.334"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:04:54.016"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:04:54.516"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:04:54.534"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:04:54.551"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:05:04.872"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:05:04.886"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:05:39.554"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:06:58.686"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:06:58.816"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:06:58.833"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:06:58.837"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:07:05.360"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:07:05.373"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:07:25.348"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:08:21.485"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:08:21.582"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:08:21.587"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:08:21.591"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:08:27.103"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:08:27.107"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:08:37.458"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:09:00.907"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:09:00.981"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:09:00.986"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:09:00.990"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:09:05.175"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:09:05.183"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:09:11.718"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:09:28.098"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:09:28.175"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:09:28.182"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:09:28.189"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:09:32.475"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:09:32.478"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:09:54.076"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:11:41.211"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:11:41.410"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:11:41.424"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:11:41.429"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:11:51.497"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:11:51.500"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:12:44.743"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:13:17.273"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:13:17.381"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:13:17.385"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:13:17.389"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:13:21.619"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:13:21.621"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:13:32.901"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:15:39.486"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:15:39.696"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:15:39.712"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:15:39.720"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:15:44.398"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:15:44.402"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:15:49.850"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:16:34.009"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:16:34.099"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:16:34.107"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:16:34.111"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:16:38.359"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:16:38.362"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:16:43.775"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:17:02.061"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:17:02.168"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:17:02.178"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:17:02.182"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:17:08.507"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:17:08.511"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:17:14.008"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:17:14.303"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:17:14.479"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:17:14.525"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:17:14.544"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:17:19.864"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:17:19.875"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:17:25.371"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:19:05.765"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:19:05.919"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:19:05.929"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:19:05.937"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:19:14.769"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:19:14.774"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:19:20.465"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:19:38.924"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:19:39.043"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:19:39.049"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:19:39.055"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:19:45.013"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:19:45.021"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:20:03.336"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:20:46.990"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:20:47.105"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:20:47.110"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:20:47.118"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:20:52.373"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:20:52.376"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:20:57.797"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 17:23:17.150"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 17:23:17.219"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 17:23:17.224"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 17:23:17.230"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 17:23:22.192"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 17:23:22.274"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 17:23:28.119"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 20:58:10.397"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 20:58:10.503"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 20:58:10.508"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 20:58:10.515"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 20:58:16.390"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 20:58:16.395"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 20:58:21.978"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 20:59:56.876"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 20:59:56.972"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 20:59:56.977"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 20:59:56.992"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 21:00:03.820"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 21:00:03.861"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 21:00:09.714"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 23:02:50.418"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 23:02:50.486"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 23:02:50.490"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 23:02:50.493"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 23:02:58.345"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 23:02:58.348"}
+{"level":"warn","message":"Email non trouvé pour réinitialisation: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 23:13:41.982"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 23:15:54.911"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 23:15:55.145"}
+{"level":"info","message":"Mode: test","service":"ophrus-backend","timestamp":"2025-07-09 23:15:55.418"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 23:15:55.480"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 23:16:06.033"}
+{"errors":[{"location":"body","msg":"Doit contenir au moins un caractère spécial","path":"password","type":"field","value":"votre_motdepasse12M"}],"ip":"::1","level":"warn","message":"Validation failed","path":"/register","service":"ophrus-backend","timestamp":"2025-07-09 23:20:43.777"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 23:33:16.546"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 23:33:16.740"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 23:33:16.744"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 23:33:16.750"}
+{"level":"warn","message":"Erreur lors de l'initialisation email: Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 23:33:27.500"}
+{"level":"warn","message":"Les emails seront désactivés","service":"ophrus-backend","timestamp":"2025-07-09 23:33:27.512"}
+{"ip":"::1","level":"error","message":"Erreur serveur: SyntaxError: Unexpected token ''', \"'{\" is not valid JSON\n    at JSON.parse (<anonymous>)\n    at createStrictSyntaxError (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\body-parser\\lib\\types\\json.js:169:10)\n    at parse (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\body-parser\\lib\\types\\json.js:86:15)\n    at C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\body-parser\\lib\\read.js:128:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)\n    at invokeCallback (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\raw-body\\index.js:238:16)\n    at done (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:524:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)","method":"POST","path":"/api/users/register","service":"ophrus-backend","timestamp":"2025-07-09 23:35:12.005"}
+{"level":"warn","message":"Email déjà utilisé: votre_email@example.com","service":"ophrus-backend","timestamp":"2025-07-09 23:36:01.226"}
+{"errors":[{"location":"body","msg":"Veuillez ajouter l'indicatif international (ex: +242)","path":"telephone","type":"field","value":"0123456789"}],"ip":"::1","level":"warn","message":"Validation failed","path":"/register","service":"ophrus-backend","timestamp":"2025-07-09 23:36:24.524"}
+{"level":"warn","message":"Tentative d'envoi d'email sans transporteur initialisé","service":"ophrus-backend","timestamp":"2025-07-09 23:39:20.055"}
+{"level":"info","message":"Code de réinitialisation envoyé à: nouvel.email.unique@example.com","service":"ophrus-backend","timestamp":"2025-07-09 23:39:20.058","userId":"686ee118912103180b3819a3"}
+{"level":"warn","message":"Email non trouvé pour réinitialisation: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 23:40:00.608"}
+{"errors":[{"location":"body","msg":"Veuillez ajouter l'indicatif international (ex: +242)","path":"telephone","type":"field","value":"0699999999"}],"ip":"::1","level":"warn","message":"Validation failed","path":"/register","service":"ophrus-backend","timestamp":"2025-07-09 23:42:02.805"}
+{"email":"mayalachristgottlieb@gmail.com","ip":"::1","level":"info","message":"Connexion réussie ID: 686ee23f912103180b3819aa","service":"ophrus-backend","timestamp":"2025-07-09 23:43:19.670"}
+{"level":"warn","message":"Tentative d'envoi d'email sans transporteur initialisé","service":"ophrus-backend","timestamp":"2025-07-09 23:43:39.547"}
+{"level":"info","message":"Code de réinitialisation envoyé à: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 23:43:39.549","userId":"686ee23f912103180b3819aa"}
+{"level":"warn","message":"Tentative d'envoi d'email sans transporteur initialisé","service":"ophrus-backend","timestamp":"2025-07-09 23:49:41.706"}
+{"level":"info","message":"Code de réinitialisation envoyé à: mayalachristgottlieb@gmail.com","service":"ophrus-backend","timestamp":"2025-07-09 23:49:41.713","userId":"686ee23f912103180b3819aa"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 23:57:58.224"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 23:57:58.304"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 23:57:58.312"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 23:57:58.317"}
+{"level":"warn","message":"Erreur lors de l'initialisation du transporteur : Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 23:58:03.699"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 23:58:09.015"}
+{"level":"info","message":"Connexion à MongoDB...","service":"ophrus-backend","timestamp":"2025-07-09 23:58:41.503"}
+{"level":"info","message":"Démarrage de l'application Ophrus-Immo","service":"ophrus-backend","timestamp":"2025-07-09 23:58:42.569"}
+{"level":"info","message":"Mode: development","service":"ophrus-backend","timestamp":"2025-07-09 23:58:42.597"}
+{"level":"info","message":"Node: v22.12.0","service":"ophrus-backend","timestamp":"2025-07-09 23:58:42.638"}
+{"level":"warn","message":"Erreur lors de l'initialisation du transporteur : Cannot find package 'nodemailer-express-handlebars' imported from C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\utils\\sendEmail.js","service":"ophrus-backend","timestamp":"2025-07-09 23:58:50.862"}
+{"level":"warn","message":"Déconnecté de MongoDB","service":"ophrus-backend","timestamp":"2025-07-09 23:58:56.887"}

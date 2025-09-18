@@ -1,0 +1,60 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\.8a1d37732ef7681fd1888d080eb0187de7cf34b0-audit.json",
+    "files": [
+        {
+            "date": 1752048126848,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-09.log",
+            "hash": "95e918298c7325d71ce728cec85b7981327d2d56f1d4fbc77f4f2766468594c3"
+        },
+        {
+            "date": 1752098457186,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-10.log",
+            "hash": "8fefe1562b9b64efe8fcdc6dee72202e4a1c0bd9536c6707b1157caaaab94bc6"
+        },
+        {
+            "date": 1752836468315,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-18.log",
+            "hash": "695d337a7c583417567e105b281c4193296d874dfd8d2a2d1e375081a90e5f45"
+        },
+        {
+            "date": 1753321362078,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-24.log",
+            "hash": "6f2700f98930eef292da2da9dcb9a47e02ad650fd6e4c31be3e4aea691987290"
+        },
+        {
+            "date": 1753427355007,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-25.log",
+            "hash": "d8f9792631e340af5df6a442b6d7d40616edc7eeb519824e4ed73bcbb85464f8"
+        },
+        {
+            "date": 1753539255716,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-26.log",
+            "hash": "93b08769b0cc853621218b901ff3b6982dc0aba8fcf1e93f29826f7e8a1e25dd"
+        },
+        {
+            "date": 1753596670332,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-27.log",
+            "hash": "4f9b05a17bc67d540417fef1270e2a888a86322b209c22e6e8ec8b031e8dd1b6"
+        },
+        {
+            "date": 1753682178586,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-28.log",
+            "hash": "f72e77f24c60f445fc58f4f02370e2fb2d72d9b14e050059185380f8a60bf68b"
+        },
+        {
+            "date": 1753862233805,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-07-30.log",
+            "hash": "bc28d16442b23680ec06f6f6245413a0a173bb6e8b9fc04cda98b522d4263458"
+        },
+        {
+            "date": 1754331193396,
+            "name": "C:\\Users\\SERVER-GOLD\\Documents\\Ophrus-immo\\logs\\error-2025-08-04.log",
+            "hash": "58d4194b59041d80ddc83a1159ffef6179247d30342ded58919073bfd3c74bc0"
+        }
+    ],
+    "hashType": "sha256"
+}
