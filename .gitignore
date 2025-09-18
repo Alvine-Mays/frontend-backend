@@ -1,0 +1,65 @@
+# --- Node.js / JavaScript ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Logs & fichiers temporaires ---
+logs/
+*.log
+*.log.*
+*.gz
+*.tmp
+*.swp
+*.swo
+*.bak
+*.pid
+
+# --- Build / Compilations ---
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# --- Systèmes / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.iml
+
+# --- Backups & binaires ---
+*.exe
+*.dll
+*.so
+*.bin
+*.class
+*.o
+*.a
+
+# --- Tests & rapports ---
+/coverage
+*.lcov
+.jest/
+
+# --- Environnements ---
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# --- Backend spécifiques ---
+ophrus-backend/logs/
+ophrus-backend/backend_logs.txt
+ophrus-backend/test_images/
+
+# --- Frontend spécifiques ---
+ophrus-frontend/.vite/
+ophrus-frontend/.next/
+ophrus-frontend/.nuxt/
+ophrus-frontend/.vercel/
