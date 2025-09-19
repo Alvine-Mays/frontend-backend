@@ -79,7 +79,7 @@ const DashboardPage = () => {
       title: 'Note Moyenne',
       value: stats.averageRating.toFixed(1),
       icon: Star,
-      color: 'bg-yellow-500',
+      color: 'bg-blue-500',
       change: '+0.2 ce mois',
     },
   ];
@@ -192,7 +192,7 @@ const DashboardPage = () => {
                       <div>
                         <h3 className="font-semibold text-gray-900">{property.titre}</h3>
                         <p className="text-sm text-gray-600">{property.ville}</p>
-                        <p className="text-lg font-bold text-yellow-600">
+                        <p className="text-lg font-bold text-blue-600">
                           {formatPrice(property.prix)}
                         </p>
                       </div>
@@ -251,8 +251,8 @@ const DashboardPage = () => {
             </div>
             
             <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                <Star className="w-4 h-4 text-yellow-600" />
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <Star className="w-4 h-4 text-blue-600" />
               </div>
               <div className="flex-1">
                 <p className="text-sm text-gray-900">Nouvelle note 5/5 pour "Appartement Centre-ville"</p>

@@ -69,7 +69,7 @@ const PropertyFilters = ({ className }) => {
           placeholder="Rechercher par titre, ville, adresse..."
           value={localFilters.search}
           onChange={(e) => handleFilterChange('search', e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
         />
       </div>
@@ -78,12 +78,12 @@ const PropertyFilters = ({ className }) => {
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center space-x-2 text-gray-700 hover:text-yellow-600 transition-colors"
+          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
         >
           <Filter className="w-5 h-5" />
           <span>Filtres avancés</span>
           {hasActiveFilters && (
-            <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+            <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
               {Object.values(localFilters).filter(v => v !== '').length}
             </span>
           )}

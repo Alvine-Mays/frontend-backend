@@ -46,8 +46,9 @@ const IntroPage = () => {
       <div className="max-w-4xl mx-auto text-center relative z-10 text-white">
         {/* Logo et titre principal */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-[#009fe3] to-[#0077b3] rounded-full mb-6 shadow-lg">
-            <Home className="w-10 h-10 text-white" />
+          <div className="inline-flex items-center justify-center bg-zinc-50 rounded-full mb-6 shadow-lg"> 
+            <img src="/images/ophrus-logo.png" alt="Ophrus" className="h-50 w-auto" />
+            {/* <Home className="w-10 h-10 text-white" /> */}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Bienvenue chez <span className="text-white">Ophrus Immobilier</span>

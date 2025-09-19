@@ -67,6 +67,11 @@ const creerProperty = asyncHandler(async (req, res) => {
       return res.status(400).json({ message: "Aucune image téléchargée." });
     }
 
+    if (!cloudinary) {
+      logger.warn('Upload indisponible: Cloudinary non configuré');
+      return res.status(503).json({ message: "Upload d'images indisponible: Cloudinary non configuré." });
+    }
+
     const images = [];
     logger.info(`Début upload ${req.files.length} images vers Cloudinary`);
     
@@ -86,6 +91,18 @@ const creerProperty = asyncHandler(async (req, res) => {
       }
     }
 
+    // Déterminer le propriétaire du bien (utilisateur):
+    // - si admin et ownerId fourni: lier au propriétaire réel
+    // - sinon: par défaut l'utilisateur courant
+    let ownerId = req.user.id;
+    if (req.user.role === 'admin' && req.body.ownerId) {
+      const exists = await User.findById(req.body.ownerId).select('_id');
+      if (!exists) {
+        return res.status(400).json({ message: "Propriétaire (ownerId) introuvable." });
+      }
+      ownerId = exists._id;
+    }
+
     const nouveauBien = await Property.create({
       titre: req.body.titre,
       description: req.body.description,
@@ -94,7 +111,7 @@ const creerProperty = asyncHandler(async (req, res) => {
       adresse: req.body.adresse,
       categorie: req.body.categorie,
       images,
-      utilisateur: req.user.id,
+      utilisateur: ownerId,
     });
 
     logger.info(`Nouveau bien créé ID: ${nouveauBien._id}`, {
@@ -272,12 +289,18 @@ const updateProperty = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: "Bien introuvable." });
     }
 
-    if (property.utilisateur.toString() !== userId) {
+    const isAdmin = req.user.role === 'admin';
+    if (!isAdmin && property.utilisateur.toString() !== userId) {
       logger.warn(`Tentative MAJ non autorisée - User: ${userId}, Propriétaire: ${property.utilisateur}`);
       return res.status(401).json({ message: "Non autorisé." });
     }
 
     if (req.files && req.files.length > 0) {
+      if (!cloudinary) {
+        logger.warn('Upload indisponible: Cloudinary non configuré (update)');
+        return res.status(503).json({ message: "Upload d'images indisponible: Cloudinary non configuré." });
+      }
+
       logger.info(`Remplacement ${property.images.length} images existantes`);
       for (const img of property.images) {
         if (img.public_id) {

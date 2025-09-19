@@ -8,7 +8,7 @@ export default function VerifyCodePage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const handleVerify = async (e) => {
     e.preventDefault();
@@ -16,17 +16,17 @@ export default function VerifyCodePage() {
     setError('');
 
     try {
-      const res = await fetch(`${API_BASE}/api/auth/reset-verify`, {
+      const res = await fetch(`${API_BASE}/users/reset-verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.message || 'Code invalide');
 
-      // Rediriger vers la page de réinitialisation avec le token en query
-      navigate(`/reset-password?token=${data.token}`);
+      // Rediriger vers la page de réinitialisation avec email+code
+      navigate(`/reset-password?email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`);
     } catch (err) {
       setError(err.message);
     } finally {

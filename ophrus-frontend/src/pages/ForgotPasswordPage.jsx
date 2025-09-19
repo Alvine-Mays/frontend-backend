@@ -8,7 +8,7 @@ const ForgotPasswordPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
 
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const ForgotPasswordPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/api/auth/reset-password-request`, {
+      const response = await fetch(`${API_BASE}/users/reset-request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,14 +29,14 @@ const ForgotPasswordPage = () => {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
-      if (data.success) {
-        setIsEmailSent(true);
-        toast.success('Email de réinitialisation envoyé !');
-      } else {
+      if (!response.ok) {
         toast.error(data.message || "Erreur lors de l'envoi de l'email");
+        return;
       }
+      setIsEmailSent(true);
+      toast.success('Email de réinitialisation envoyé !');
     } catch (error) {
       console.error('Erreur:', error);
       toast.error('Erreur de connexion au serveur');

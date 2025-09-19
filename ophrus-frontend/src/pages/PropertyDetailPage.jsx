@@ -357,14 +357,14 @@ const PropertyDetailPage = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Award className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
+                  <Award className="w-6 h-6 text-blue-500 flex-shrink-0 mt-1" />
                   <div>
                     <div className="font-medium text-gray-900">Expertise reconnue</div>
-                    <div className="text-sm text-gray-600">15+ années d'expérience</div>
+                    <div className="text-sm text-gray-600">5+ années d'expérience</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Star className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
+                  <Star className="w-6 h-6 text-blue-500 flex-shrink-0 mt-1" />
                   <div>
                     <div className="font-medium text-gray-900">98% de satisfaction</div>
                     <div className="text-sm text-gray-600">Clients satisfaits de nos services</div>
@@ -390,7 +390,7 @@ const PropertyDetailPage = () => {
             </label>
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Votre nom complet"
             />
           </div>
@@ -400,7 +400,7 @@ const PropertyDetailPage = () => {
             </label>
             <input
               type="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="votre@email.com"
             />
           </div>
@@ -410,7 +410,7 @@ const PropertyDetailPage = () => {
             </label>
             <input
               type="tel"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="+242 06 123 45 67"
             />
           </div>
@@ -420,9 +420,9 @@ const PropertyDetailPage = () => {
             </label>
             <textarea
               rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Je suis intéressé(e) par cette propriété..."
-              defaultValue={`Je suis intéressé(e) par la propriété "${property.titre}" à ${property.ville}.`}
+              defaultValue={`Bonjour, je suis intéressé(e) par la propriété "${property.titre}" à ${property.ville}.`}
             />
           </div>
           <div className="flex space-x-3">

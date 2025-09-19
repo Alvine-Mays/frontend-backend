@@ -48,7 +48,7 @@ const FavoritesPage = () => {
                   className={cn(
                     'p-2 rounded-md transition-colors',
                     viewMode === 'grid'
-                      ? 'bg-white text-yellow-600 shadow-sm'
+                      ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   )}
                 >
@@ -59,7 +59,7 @@ const FavoritesPage = () => {
                   className={cn(
                     'p-2 rounded-md transition-colors',
                     viewMode === 'list'
-                      ? 'bg-white text-yellow-600 shadow-sm'
+                      ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   )}
                 >

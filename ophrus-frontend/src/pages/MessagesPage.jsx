@@ -163,11 +163,11 @@ const MessagesPage = () => {
                 key={conversation.otherUser._id}
                 onClick={() => handleConversationClick(conversation.otherUser._id)}
                 className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${
-                  currentConversation === conversation.otherUser._id ? 'bg-yellow-50 border-r-2 border-yellow-500' : ''
+                  currentConversation === conversation.otherUser._id ? 'bg-blue-50 border-r-2 border-blue-500' : ''
                 }`}
               >
                 <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-semibold">
                       {conversation.otherUser.nom.charAt(0).toUpperCase()}
                     </span>
@@ -196,7 +196,7 @@ const MessagesPage = () => {
                         <span className="text-xs text-gray-500">
                           {conversation.unreadCount} non lu{conversation.unreadCount > 1 ? 's' : ''}
                         </span>
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                       </div>
                     )}
                   </div>
@@ -228,7 +228,7 @@ const MessagesPage = () => {
                   </Button>
                 )}
                 
-                <div className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-yellow-500 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-sm">
                     {conversations.find(c => c.otherUser._id === currentConversation)?.otherUser.nom.charAt(0).toUpperCase() || 'A'}
                   </span>
@@ -277,14 +277,14 @@ const MessagesPage = () => {
                   <div
                     className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                       message.expediteur._id === user?.id
-                        ? 'bg-yellow-500 text-white'
+                        ? 'bg-blue-500 text-white'
                         : 'bg-white text-gray-900 border border-gray-200'
                     }`}
                   >
                     <p className="text-sm">{message.contenu}</p>
                     <p
                       className={`text-xs mt-1 ${
-                        message.expediteur._id === user?.id ? 'text-yellow-100' : 'text-gray-500'
+                        message.expediteur._id === user?.id ? 'text-blue-100' : 'text-gray-500'
                       }`}
                     >
                       {formatTime(message.createdAt)}

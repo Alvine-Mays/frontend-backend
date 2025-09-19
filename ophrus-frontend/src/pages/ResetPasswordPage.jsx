@@ -8,6 +8,8 @@ const ResetPasswordPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const token = searchParams.get('token');
+  const emailParam = searchParams.get('email');
+  const codeParam = searchParams.get('code');
 
   const [formData, setFormData] = useState({
     newPassword: '',
@@ -20,26 +22,33 @@ const ResetPasswordPage = () => {
   const [userEmail, setUserEmail] = useState('');
   const [isPasswordReset, setIsPasswordReset] = useState(false);
 
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
-    if (!token) {
-      toast.error('Token de réinitialisation manquant');
-      navigate('/login');
+    // Si on utilise le flux par code (email+code), on n'a pas de token
+    if (!token && (!emailParam || !codeParam)) {
+      toast.error('Paramètres manquants');
+      navigate('/forgot-password');
       return;
     }
 
-    verifyToken();
+    if (token) {
+      verifyToken();
+    } else {
+      // Flux code: on peut afficher directement le formulaire
+      setIsTokenValid(true);
+      setUserEmail(emailParam);
+    }
   }, [token, navigate]);
 
   const verifyToken = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/auth/verify-reset-token`, {
+      const response = await fetch(`${API_BASE}/users/reset-verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token }),
+        body: JSON.stringify({ email: emailParam, code: codeParam }),
       });
 
       const data = await response.json();
@@ -93,13 +102,14 @@ const ResetPasswordPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/api/auth/reset-password`, {
+      const response = await fetch(`${API_BASE}/users/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          token,
+          email: token ? userEmail : emailParam,
+          code: token ? undefined : codeParam,
           newPassword
         }),
       });

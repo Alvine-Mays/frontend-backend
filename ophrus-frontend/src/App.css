@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+button {
+  cursor: pointer;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -121,11 +123,8 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
   }
   
   /* Custom scrollbar */
@@ -134,49 +133,91 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    background-color: #f3f4f6;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 rounded-full;
+    background-color: #d1d5db;
+    border-radius: 9999px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400;
+    background-color: #9ca3af;
   }
 }
 
 @layer components {
   /* Luxury button styles */
   .btn-luxury {
-    @apply px-8 py-3 bg-gradient-to-r from-blue-primary to-blue-dark text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+    padding: 0.75rem 2rem;
+    background-image: linear-gradient(to right, var(--color-blue-primary), var(--color-blue-dark));
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    transition: transform 300ms, box-shadow 300ms;
+  }
+  .btn-luxury:hover {
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    transform: scale(1.05);
   }
   
   .btn-luxury-outline {
-    @apply px-8 py-3 border-2 border-blue-primary text-blue-primary font-semibold rounded-lg hover:bg-blue-primary hover:text-white transition-all duration-300;
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--color-blue-primary);
+    color: var(--color-blue-primary);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: background-color 300ms, color 300ms;
+  }
+  .btn-luxury-outline:hover {
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
   }
   
   /* Property card styles */
   .property-card {
-    @apply bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 500ms, box-shadow 500ms;
+  }
+  .property-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
   }
   
   .property-card-image {
-    @apply relative aspect-[4/3] overflow-hidden;
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
   }
   
   .property-card-image img {
-    @apply w-full h-full object-cover transition-transform duration-700 hover:scale-110;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms;
+  }
+  .property-card-image img:hover {
+    transform: scale(1.1);
   }
   
   /* Gradient overlays */
   .gradient-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0) 60%);
   }
   
   /* Luxury text styles */
   .text-luxury {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-primary to-blue-dark;
+    background-image: linear-gradient(to right, var(--color-blue-primary), var(--color-blue-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   
   /* Animation classes */
@@ -226,20 +267,6 @@
   }
 }
 
-/* Responsive typography */
-@layer utilities {
-  .text-responsive-xl {
-    @apply text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
-  }
-  
-  .text-responsive-lg {
-    @apply text-xl md:text-2xl lg:text-3xl;
-  }
-  
-  .text-responsive-md {
-    @apply text-lg md:text-xl lg:text-2xl;
-  }
-}
 
 
 

@@ -2,6 +2,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const { logger, morganMiddleware } = require("./utils/logging");
 
 // 🔑 Configuration des variables d'environnement
@@ -10,11 +11,6 @@ dotenv.config();
 // 🚀 Initialisation de l'application Express
 const app = express();
 
-// 🔗 Connexion à la base de données
-const connectDB = require("./config/db");
-if (process.env.NODE_ENV !== 'test') {
-  connectDB();
-}
 
 // 📝 Logs d'initialisation
 logger.info("🚀 Démarrage de l'application Ophrus-Immo");
@@ -40,6 +36,7 @@ app.use(express.urlencoded({
   extended: true,
   limit: '10kb'
 }));
+app.use(cookieParser());
 app.use(morganMiddleware);
 
 // 🛣️ Routes publiques (accessibles sans authentification)
@@ -50,6 +47,7 @@ app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/favoris", require("./routes/favorisRoutes"));
 app.use("/api/messages", require("./routes/messageRoutes"));
+app.use("/api/reservations", require("./routes/reservationRoutes"));
 
 // 🧪 Route de santé (Healthcheck)
 app.get("/health", (req, res) => {

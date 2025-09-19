@@ -14,12 +14,12 @@ const generateRefreshToken = (id) => {
 };
 
 /* ------------------------------------------------------------------ */
-/* GET /api/users/profil – Retourne l\'utilisateur actuel              */
+/* GET /api/users/profil – Retourne l'utilisateur actuel              */
 /* ------------------------------------------------------------------ */
 exports.getUser = async (req, res) => {
   try {
     if (!req.user) {
-      logger.warn("Tentative d\'accès non autorisé au profil");
+      logger.warn("Tentative d'accès non autorisé au profil");
       return res.status(401).json({ message: "Non autorisé." });
     }
 
@@ -48,7 +48,7 @@ exports.getUser = async (req, res) => {
 exports.registerUser = async (req, res) => {
   try {
     const { nom, email, telephone, password } = req.body;
-    logger.debug(`Tentative d\'inscription: ${email}`);
+    logger.debug(`Tentative d'inscription: ${email}`);
 
     const existing = await User.findOne({ email });
     if (existing) {
@@ -62,27 +62,32 @@ exports.registerUser = async (req, res) => {
       email, 
       telephone, 
       password: hashed,
-      refreshTokens: [] // Initialisation explicite
+      refreshTokens: []
     });
 
     const token = generateToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
+    if (!user.refreshTokens) user.refreshTokens = [];
     user.refreshTokens.push(refreshToken);
     await user.save();
 
-    // Réponse de succès après la création de l\'utilisateur
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 30 * 24 * 60 * 60 * 1000
+    };
+    res.cookie('rt', refreshToken, cookieOptions);
+
     res.status(201).json({
       success: true,
-      _id: user._id,
-      nom: user.nom,
-      email: user.email,
+      user: { _id: user._id, nom: user.nom, email: user.email },
       token,
-      refreshToken,
       message: "Inscription réussie."
     });
 
   } catch (error) {
-    logger.error(`Erreur lors de l\'inscription: ${error.message}`, {
+    logger.error(`Erreur lors de l'inscription: ${error.message}`, {
       stack: error.stack,
       email: req.body.email
     });
@@ -102,7 +107,7 @@ exports.loginUser = async (req, res) => {
 
     const user = await User.findOne({
       $or: [{ email: identifier }, { nom: identifier }],
-    }).select("+password +refreshTokens"); // Ajout de +refreshTokens
+    }).select("+password +refreshTokens");
 
     logger.debug(`Utilisateur trouvé: ${user ? user.email : "aucun"}`);
 
@@ -110,25 +115,30 @@ exports.loginUser = async (req, res) => {
       logger.warn(`Identifiant non trouvé: ${identifier}`);
       return res.status(401).json({ message: "Utilisateur non trouvé." });
     }
+
     const isMatch = await bcrypt.compare(password, user.password);
-    logger.debug(`Password provided: ${password}`);
-    logger.debug(`Hashed password from DB: ${user.password}`);
     logger.debug(`Password match result: ${isMatch}`);
     if (!isMatch) {
-      logger.warn(`Mot de passe incorrect pour l\'utilisateur: ${user.email}`);
+      logger.warn(`Mot de passe incorrect pour l'utilisateur: ${user.email}`);
       return res.status(401).json({ message: "Mot de passe incorrect." });
     }
 
     const token = generateToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
-    
-    // Initialisation du tableau si undefined
+
     if (!user.refreshTokens) {
       user.refreshTokens = [];
     }
     user.refreshTokens.push(refreshToken);
-    
     await user.save();
+
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 30 * 24 * 60 * 60 * 1000
+    };
+    res.cookie('rt', refreshToken, cookieOptions);
 
     logger.info(`Connexion réussie ID: ${user._id}`, {
       email: user.email,
@@ -137,11 +147,8 @@ exports.loginUser = async (req, res) => {
 
     res.json({
       success: true,
-      _id: user._id,
-      nom: user.nom,
-      email: user.email,
-      token,
-      refreshToken,
+      user: { _id: user._id, nom: user.nom, email: user.email },
+      token
     });
   } catch (error) {
     logger.error(`Erreur lors de la connexion: ${error.message}`, {
@@ -157,35 +164,36 @@ exports.loginUser = async (req, res) => {
 /* ------------------------------------------------------------------ */
 exports.logoutUser = async (req, res) => {
   try {
-    const { refreshToken } = req.body;
     logger.debug("Tentative de déconnexion");
 
-    if (!refreshToken) {
-      logger.warn("Refresh token manquant pour la déconnexion");
-      return res.status(400).json({ message: "Refresh token requis" });
+    const refreshToken = (req.cookies && req.cookies.rt) || req.body?.refreshToken;
+
+    if (refreshToken) {
+      try {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id);
+        if (user && Array.isArray(user.refreshTokens)) {
+          user.refreshTokens = user.refreshTokens.filter((t) => t !== refreshToken);
+          await user.save();
+        }
+      } catch (err) {
+        logger.warn(`Erreur lors de la vérification du refresh token au logout: ${err.message}`);
+      }
     }
 
-    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id);
+    const clearOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    };
+    res.clearCookie('rt', clearOptions);
 
-    if (!user || !Array.isArray(user.refreshTokens)) {
-      logger.error(`Utilisateur non trouvé ou refreshTokens non défini lors de la déconnexion ID: ${decoded.id}`);
-      return res.status(200).json({ message: "Déconnexion réussie." });
-    }
-
-    user.refreshTokens = user.refreshTokens.filter((t) => t !== refreshToken);
-    await user.save();
-
-    logger.info(`Déconnexion réussie ID: ${user._id}`);
+    logger.info(`Déconnexion effectuée`);
     res.status(200).json({ message: "Déconnexion réussie." });
   } catch (error) {
     logger.error(`Erreur lors de la déconnexion: ${error.message}`, {
       stack: error.stack
     });
-    // En cas d\'erreur de vérification du token (ex: token invalide/expiré), on renvoie une erreur 403
-    if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-      return res.status(403).json({ message: "Token invalide ou expiré." });
-    }
     res.status(500).json({ message: "Erreur serveur." });
   }
 };
@@ -195,19 +203,20 @@ exports.logoutUser = async (req, res) => {
 /* ------------------------------------------------------------------ */
 exports.refreshToken = async (req, res) => {
   try {
-    const { refreshToken } = req.body;
     logger.debug("Tentative de renouvellement de token");
 
+    const refreshToken = req.cookies?.rt;
+
     if (!refreshToken) {
-      logger.warn("Refresh token manquant");
+      logger.warn("Refresh token manquant (cookie)");
       return res.status(401).json({ message: "Refresh token requis" });
     }
 
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
 
-    if (!user || !user.refreshTokens.includes(refreshToken)) {
-      logger.warn(`Refresh token invalide pour l\'utilisateur ID: ${decoded.id}`);
+    if (!user || !Array.isArray(user.refreshTokens) || !user.refreshTokens.includes(refreshToken)) {
+      logger.warn(`Refresh token invalide pour l'utilisateur ID: ${decoded.id}`);
       return res.status(403).json({ message: "Token invalide." });
     }
 
@@ -218,11 +227,18 @@ exports.refreshToken = async (req, res) => {
     user.refreshTokens.push(newRefreshToken);
     await user.save();
 
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 30 * 24 * 60 * 60 * 1000
+    };
+    res.cookie('rt', newRefreshToken, cookieOptions);
+
     logger.info(`Tokens renouvelés avec succès ID: ${user._id}`);
 
     res.status(200).json({
-      token: newAccessToken,
-      refreshToken: newRefreshToken,
+      token: newAccessToken
     });
   } catch (error) {
     logger.error(`Erreur lors du refresh token: ${error.message}`, {
@@ -248,7 +264,7 @@ exports.updateUser = async (req, res) => {
     }
 
     if (user._id.toString() !== req.user.id) {
-      logger.warn(`Tentative de modification non autorisée ID: ${id} par l\'utilisateur ID: ${req.user.id}`);
+      logger.warn(`Tentative de modification non autorisée ID: ${id} par l'utilisateur ID: ${req.user.id}`);
       return res.status(403).json({ message: "Accès interdit." });
     }
 
@@ -311,7 +327,7 @@ exports.requestPasswordReset = async (req, res) => {
 
     await user.save();
     
-    // Envoi de l\'email
+    // Envoi de l'email
     await sendEmail({
       to: user.email,
       subject: 'Votre code de réinitialisation',
@@ -385,10 +401,10 @@ exports.resetPasswordWithCode = async (req, res) => {
     const { email, code, newPassword } = req.body;
     logger.debug(`Demande de réinitialisation de mot de passe pour: ${email}`);
 
-    // Récupérer l\'utilisateur avec le code de réinitialisation et le mot de passe
+    // Récupérer l'utilisateur avec le code de réinitialisation et le mot de passe
     const user = await User.findOne({ email, resetCode: code }).select("+password");
 
-    // Vérifier si l\'utilisateur existe et si le code est valide/non expiré
+    // Vérifier si l'utilisateur existe et si le code est valide/non expiré
     if (!user || user.resetCodeExpires < Date.now()) {
       logger.warn(`Code invalide/expiré pour la réinitialisation: ${email}`);
       return res.status(400).json({ message: "Code invalide ou expiré." });
@@ -397,7 +413,7 @@ exports.resetPasswordWithCode = async (req, res) => {
     // Mettre à jour le mot de passe
     user.password = await bcrypt.hash(newPassword, 10);
     user.resetCode = null; // Supprimer le code après utilisation
-    user.resetCodeExpires = null; // Supprimer l\'expiration après utilisation
+    user.resetCodeExpires = null; // Supprimer l'expiration après utilisation
     await user.save();
 
     logger.info(`Mot de passe réinitialisé avec succès pour: ${email}`, {
@@ -420,7 +436,7 @@ exports.resetPasswordWithCode = async (req, res) => {
 exports.searchUsers = async (req, res) => {
   try {
     const { nom, email } = req.query;
-    logger.debug(`Recherche d\'utilisateurs - nom: ${nom}, email: ${email}`);
+    logger.debug(`Recherche d'utilisateurs - nom: ${nom}, email: ${email}`);
 
     const query = [];
     if (nom) query.push({ nom: { $regex: nom, $options: "i" } });
@@ -434,7 +450,7 @@ exports.searchUsers = async (req, res) => {
 
     res.json(users);
   } catch (error) {
-    logger.error(`Erreur lors de la recherche d\'utilisateurs: ${error.message}`, {
+    logger.error(`Erreur lors de la recherche d'utilisateurs: ${error.message}`, {
       stack: error.stack,
       query: req.query
     });
@@ -486,7 +502,7 @@ exports.deleteUser = async (req, res) => {
       const activeAdmins = await User.countDocuments({ 
         role: 'admin', 
         deleted: false,
-        _id: { $ne: id } // Exclut l\'utilisateur actuel
+        _id: { $ne: id } // Exclut l'utilisateur actuel
       });
       
       if (activeAdmins < 1) {

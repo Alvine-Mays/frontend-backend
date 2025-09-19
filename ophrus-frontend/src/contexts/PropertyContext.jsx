@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import propertyAPI from '../lib/api'; // ✅ correct
+import { propertyAPI } from '../lib/api';
 import toast from 'react-hot-toast';
 
 const PropertyContext = createContext();
@@ -95,11 +95,17 @@ export const PropertyProvider = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
       const response = await propertyAPI.getAll({ page, ...filters });
+      const data = response.data || {};
       dispatch({
         type: 'SET_PROPERTIES',
         payload: {
-          properties: response.data.properties,
-          pagination: response.data.pagination,
+          properties: data.properties || [],
+          pagination: {
+            page: data.page || 1,
+            limit: data.limit || 12,
+            total: data.total || (data.properties ? data.properties.length : 0),
+            totalPages: data.totalPages || 1,
+          },
         },
       });
     } catch (error) {

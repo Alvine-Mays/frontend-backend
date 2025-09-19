@@ -6,6 +6,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 // Création de l’instance Axios
 const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -30,8 +31,29 @@ api.interceptors.request.use(
 // Intercepteur des réponses pour gérer les erreurs (notamment 401)
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
+  async (error) => {
+    const originalRequest = error.config;
+    if (
+      error.response?.status === 401 &&
+      !originalRequest?._retry &&
+      !originalRequest?.url?.includes('/users/refresh-token')
+    ) {
+      originalRequest._retry = true;
+      try {
+        const refreshResponse = await api.post('/users/refresh-token');
+        const newToken = refreshResponse.data?.token;
+        if (newToken) {
+          localStorage.setItem('token', newToken);
+          api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+          originalRequest.headers = {
+            ...originalRequest.headers,
+            Authorization: `Bearer ${newToken}`,
+          };
+          return api(originalRequest);
+        }
+      } catch (refreshError) {
+        // ignore
+      }
       localStorage.removeItem('token');
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
@@ -102,9 +124,10 @@ export const propertyAPI = {
     });
   },
   delete: (id) => api.delete(`/properties/${id}`),
-  toggleFavorite: (id) => api.patch(`/properties/${id}/favori`),
+  // Favoris centralisés via /favoris
+  toggleFavorite: (id) => api.post(`/favoris/${id}`),
   rate: (id, rating) => api.post(`/properties/${id}/rate`, { note: rating }),
-  getWithRating: (id) => api.get(`/properties/${id}/with-rating`)
+  getWithRating: (id) => api.get(`/properties/${id}/rating`)
 };
 
 // ------------------------------------------
@@ -120,11 +143,6 @@ export const messageAPI = {
   getUnreadCount: () => api.get('/messages/unread'),
   markAsRead: (messageId) => api.patch(`/messages/${messageId}/read`),
   markThreadAsRead: (userId) => api.patch(`/messages/thread/${userId}/read`),
-  getAll: () => api.get('/messages'),
-  getById: (id) => api.get(`/messages/${id}`),
-  create: (messageData) => api.post('/messages', messageData),
-  update: (id, messageData) => api.put(`/messages/${id}`, messageData),
-  delete: (id) => api.delete(`/messages/${id}`),
 };
 
 // ------------------------------------------
@@ -132,8 +150,20 @@ export const messageAPI = {
 // ------------------------------------------
 export const favoritesAPI = {
   getAll: () => api.get('/favoris'),
-  add: (propertyId) => api.post('/favoris', { propertyId }),
-  remove: (propertyId) => api.delete(`/favoris/${propertyId}`),
+  add: (propertyId) => api.post(`/favoris/${propertyId}`),
+  remove: (propertyId) => api.post(`/favoris/${propertyId}`),
+};
+
+// ------------------------------------------
+// Réservations (Location)
+// ------------------------------------------
+export const reservationAPI = {
+  create: (propertyId, date) => api.post('/reservations', { propertyId, date }),
+  my: () => api.get('/reservations/my'),
+  owner: () => api.get('/reservations/owner'),
+  cancel: (id) => api.patch(`/reservations/${id}/cancel`),
+  confirm: (id) => api.patch(`/reservations/${id}/confirm`),
+  getById: (id) => api.get(`/reservations/${id}`),
 };
 
 // ------------------------------------------

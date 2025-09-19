@@ -112,8 +112,8 @@ const RegisterPage = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-primary to-blue-dark rounded-xl flex items-center justify-center">
-            <span className="text-white font-bold text-2xl">O</span>
+          <div className="inline-flex items-center justify-center bg-zinc-50 rounded-full mb-6 shadow-lg"> 
+            <img src="/images/ophrus-logo.png" alt="Ophrus" className="h-25 w-auto" />
           </div>
         </div>
 

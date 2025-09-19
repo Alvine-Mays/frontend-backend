@@ -1,3 +1,55 @@
+# Ophrus Backend — Production & Auth (Guide rapide)
+
+Ce backend Express/Mongo est prêt pour un déploiement Render avec authentification Access + Refresh Token par cookie httpOnly.
+
+## Variables d'environnement principales
+- PORT=5000
+- NODE_ENV=production
+- MONGO_URI=mongodb+srv://...
+- JWT_SECRET=change_me
+- FRONTEND_URL=https://votre-front.vercel.app
+- DASHBOARD_URL= (optionnel)
+- CLOUDINARY_*, RESEND_API_KEY, SMTP_* (optionnels, fonctionnement en fail‑soft)
+
+Voir `.env.example`.
+
+## CORS/CSRF
+- CORS: credentials: true; whitelist basée sur FRONTEND_URL (+ localhost)
+- Allowed headers: Content-Type, Authorization
+- CSRF simple: vérifie Origin/Referer ∈ { FRONTEND_URL, DASHBOARD_URL, localhost }
+
+## Flux Auth
+- Login/Register: renvoient { user, token }. Le refresh token est stocké côté serveur dans un cookie httpOnly `rt` (secure en prod, sameSite=lax, maxAge 30j).
+- Refresh: POST /api/users/refresh-token (sans payload). Lit `req.cookies.rt`, vérifie/rotate, ré-émet le cookie `rt` et renvoie un nouvel access token.
+- Logout: POST /api/users/logout (sans payload). Lit le cookie `rt` (ou un refreshToken fourni), le révoque en DB et efface le cookie.
+
+Endpoints clés:
+- POST /api/users/register
+- POST /api/users/login
+- GET  /api/users/profil
+- POST /api/users/refresh-token
+- POST /api/users/logout
+
+Réservations (location):
+- POST /api/reservations { propertyId, date } → créer une demande (auth)
+- GET  /api/reservations/my → mes réservations (auth)
+- GET  /api/reservations/owner → réservations reçues pour mes biens (auth propriétaire)
+- PATCH /api/reservations/:id/cancel → annuler (demandeur/propriétaire/admin)
+- PATCH /api/reservations/:id/confirm → confirmer (propriétaire/admin)
+- GET  /api/reservations/:id → détail (demandeur/propriétaire/admin)
+
+## Déploiement (Render)
+- Type: Web Service Node
+- Build: `npm ci` (ou `npm install`)
+- Start: `npm start`
+- Runtime: Node 20.x
+- Variables: cf. ci‑dessus
+- Auto‑deploy depuis GitHub
+
+Note: la connexion MongoDB est gérée uniquement dans `server.js` (pas de double connexion).
+
+---
+
 DOCUMENT TECHNIQUE — APPLICATION MOBILE IMMOBILIÈRE
 
 1. Présentation du projet

@@ -3,7 +3,7 @@ import { Heart } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../common/Toast';
 import { useMutation } from '../../hooks/useApi';
-import api from '../../lib/api';
+import api, { favoritesAPI } from '../../lib/api';
 
 const FavoriteButton = ({ 
   propertyId, 
@@ -25,9 +25,9 @@ const FavoriteButton = ({
   const { mutate: toggleFavorite, loading } = useMutation(
     async () => {
       if (isFavorite) {
-        return await api.delete(`/favorites/${propertyId}`);
+        return await favoritesAPI.remove(propertyId);
       } else {
-        return await api.post('/favorites', { propertyId });
+        return await favoritesAPI.add(propertyId);
       }
     },
     {
@@ -50,9 +50,10 @@ const FavoriteButton = ({
     const checkFavoriteStatus = async () => {
       if (isAuthenticated && propertyId) {
         try {
-          const response = await api.get('/favorites');
+          const response = await favoritesAPI.getAll();
           const favorites = response.data || [];
-          setIsFavorite(favorites.some(fav => fav.propertyId === propertyId));
+          // Le backend renvoie des Property peuplées; on compare par _id
+          setIsFavorite(favorites.some(fav => (fav._id || fav.id) === propertyId));
         } catch (error) {
           console.error('Erreur lors de la vérification des favoris:', error);
         }

@@ -13,10 +13,10 @@ export const seoConfig = {
     image: '/images/og/og-properties.jpg'
   },
   propertyDetail: (property) => ({
-    title: `${property?.title || 'Propriété'} - Ophrus Immobilier`,
+    title: `${property?.titre || 'Propriété'} - Ophrus Immobilier`,
     description: property?.description || 'Découvrez cette propriété exceptionnelle avec Ophrus Immobilier.',
-    keywords: `${property?.type || 'propriété'}, ${property?.location || 'immobilier'}, ${property?.price ? 'prix ' + property.price : 'luxe'}`,
-    image: property?.images?.[0] || '/images/og/og-property.jpg',
+    keywords: `${property?.categorie || 'propriété'}, ${property?.ville || 'immobilier'}, ${property?.prix ? 'prix ' + property.prix : 'luxe'}`,
+    image: (property?.images?.[0]?.url) || '/images/og/og-property.jpg',
     type: 'article'
   }),
   about: {
@@ -108,28 +108,27 @@ export const generatePropertyStructuredData = (property) => {
   return {
     "@context": "https://schema.org",
     "@type": "RealEstate",
-    "name": property.title,
+    "name": property.titre,
     "description": property.description,
-    "image": property.images || [],
+    "image": (property.images || []).map(img => img?.url).filter(Boolean),
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": property.location,
-      "addressCountry": "FR"
+      "addressLocality": property.ville,
+      "addressCountry": "CG"
     },
     "offers": {
       "@type": "Offer",
-      "price": property.price,
-      "priceCurrency": "EUR",
+      "price": property.prix,
+      "priceCurrency": "XAF",
       "availability": "https://schema.org/InStock"
     },
-    "floorSize": {
+    "floorSize": property.superficie ? {
       "@type": "QuantitativeValue",
-      "value": property.surface,
+      "value": property.superficie,
       "unitCode": "MTK"
-    },
-    "numberOfRooms": property.rooms,
-    "numberOfBedrooms": property.bedrooms,
-    "numberOfBathroomsTotal": property.bathrooms
+    } : undefined,
+    "numberOfBedrooms": property.nombre_chambres,
+    "numberOfBathroomsTotal": property.nombre_salles_bain
   };
 };
 

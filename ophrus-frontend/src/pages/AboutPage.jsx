@@ -9,8 +9,8 @@ import { seoConfig } from '../utils/seoData';
 const AboutPage = () => {
   const stats = [
     { icon: TrendingUp, label: 'Propriétés vendues', value: '500+' },
-    { icon: Users, label: 'Clients satisfaits', value: '1200+' },
-    { icon: Award, label: 'Années d\'expérience', value: '15+' },
+    { icon: Users, label: 'Clients satisfaits', value: '750+' },
+    { icon: Award, label: 'Années d\'expérience', value: '5+' },
     { icon: Star, label: 'Note moyenne', value: '4.9/5' },
   ];
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
     {
       name: 'Théodor',
       role: 'Directeur Général',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80',
       description: "8 ans d'expérience dans l'immobilier de luxe"
     },
     {
@@ -82,11 +82,11 @@ const AboutPage = () => {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
             <div className="text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                À Propos d'\
+                À Propos d'
                 <span className="text-blue-primary block mt-2">Ophrus Immobilier</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Depuis plus de 15 ans, nous accompagnons nos clients dans leurs projets immobiliers
+                Depuis plus de 5 ans, nous accompagnons nos clients dans leurs projets immobiliers
                 les plus ambitieux avec expertise, passion et dévouement.
               </p>
             </div>
@@ -266,7 +266,7 @@ const AboutPage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-primary"
+                  className="bg-white text-blue-primary hover:bg-gray-100"
                 >
                   Voir nos propriétés
                 </Button>

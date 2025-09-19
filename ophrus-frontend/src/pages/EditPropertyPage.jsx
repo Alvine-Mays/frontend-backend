@@ -311,7 +311,7 @@ const EditPropertyPage = () => {
                       name={key}
                       checked={formData[key]}
                       onChange={handleChange}
-                      className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
                     <span className="text-sm text-gray-700">{label}</span>
                   </label>

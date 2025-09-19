@@ -37,7 +37,7 @@ const HomePage = () => {
   const stats = [
     { icon: TrendingUp, label: 'Propriétés vendues', value: '500+' },
     { icon: Shield, label: 'Clients satisfaits', value: '98%' },
-    { icon: Award, label: "Années d'expérience", value: '15+' },
+    { icon: Award, label: "Années d'expérience", value: '5+' },
   ];
 
   const features = [
@@ -87,7 +87,7 @@ const HomePage = () => {
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto animate-slide-up">
               Découvrez une sélection exclusive de propriétés exceptionnelles avec Ophrus Immobilier, 
-              votre partenaire de confiance depuis plus de 15 ans.
+              votre partenaire de confiance depuis plus de 5 ans.
             </p>
 
             {/* Search Bar */}
@@ -99,7 +99,7 @@ const HomePage = () => {
                   placeholder="Rechercher par ville, type de propriété..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-32 py-4 text-lg rounded-xl border-0 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-primary"
+                  className="w-full pl-12 pr-32 py-4 text-lg rounded-xl border-0 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-primary"
                 />
                 <Button
                   type="submit"
@@ -224,7 +224,7 @@ const HomePage = () => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-blue-primary">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-white text-blue-primary hover:bg-gray-100">
                 Nous contacter
               </Button>
             </Link>

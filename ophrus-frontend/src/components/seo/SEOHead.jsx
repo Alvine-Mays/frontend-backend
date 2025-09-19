@@ -20,7 +20,21 @@ const SEOHead = ({
   const fullTitle = title.includes('Ophrus') ? title : `${title} | Ophrus Immobilier`;
   const canonicalUrl = canonical || url;
   const baseUrl = 'https://ophrus-immobilier.com';
-  const fullImageUrl = image?.startsWith('http') ? image : `${baseUrl}${image}`;
+  const toUrlString = (img) => {
+    try {
+      if (!img) return '/images/og/og-default.jpg';
+      if (typeof img === 'string') return img.startsWith('http') ? img : `${window.location.origin}${img}`;
+      if (Array.isArray(img)) {
+        const first = img[0];
+        return toUrlString(first?.url || first);
+      }
+      if (typeof img === 'object' && img.url) return toUrlString(img.url);
+      return '/images/og/og-default.jpg';
+    } catch {
+      return '/images/og/og-default.jpg';
+    }
+  };
+  const fullImageUrl = toUrlString(image);
 
   return (
     <Helmet>

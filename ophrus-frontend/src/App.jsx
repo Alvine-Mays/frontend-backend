@@ -35,6 +35,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import './App.css';
+import ScrollToTop from './components/common/ScrollToTop';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <PropertyProvider>
               <MessageProvider>
                 <Router>
+                  <ScrollToTop />
                   <Routes>
                     {/* Page de présentation (sans layout) */}
                     <Route path="/" element={<IntroPage />} />

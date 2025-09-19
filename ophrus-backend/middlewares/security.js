@@ -96,12 +96,17 @@ module.exports = {
   preventHPP: hpp(),
 
   corsOptions: cors({
+    preflightContinue: false,
     origin: (origin, callback) => {
       const whitelist = [
         'http://localhost:3000', 
         'http://localhost:5173',
         'http://localhost:5174',
         'http://localhost:5175',
+        'http://127.0.0.1:3000',
+        'http://127.0.0.1:5173',
+        'http://127.0.0.1:5174',
+        'http://127.0.0.1:5175',
         'https://app.monsite.com',
         process.env.FRONTEND_URL
       ].filter(Boolean);
@@ -114,6 +119,7 @@ module.exports = {
       }
     },
     methods: ['GET','POST','PUT','DELETE','PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 200
   }),
@@ -298,6 +304,9 @@ const speedLimiter = slowDown({
 
 // Middleware de protection CSRF simple
 const csrfProtection = (req, res, next) => {
+  if (process.env.NODE_ENV !== 'production') {
+    return next();
+  }
   // Vérifier les méthodes sensibles
   if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
     const origin = req.get('Origin');
@@ -309,6 +318,10 @@ const csrfProtection = (req, res, next) => {
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:5175',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:5173',
+      'http://127.0.0.1:5174',
+      'http://127.0.0.1:5175',
       process.env.FRONTEND_URL,
       process.env.DASHBOARD_URL
     ].filter(Boolean);
