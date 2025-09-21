@@ -36,7 +36,9 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest?._retry &&
-      !originalRequest?.url?.includes('/users/refresh-token')
+      !originalRequest?.url?.includes('/users/refresh-token') &&
+      !originalRequest?.url?.includes('/users/login') &&
+      !originalRequest?.url?.includes('/users/register')
     ) {
       originalRequest._retry = true;
       try {
@@ -126,8 +128,26 @@ export const propertyAPI = {
   delete: (id) => api.delete(`/properties/${id}`),
   // Favoris centralisés via /favoris
   toggleFavorite: (id) => api.post(`/favoris/${id}`),
-  rate: (id, rating) => api.post(`/properties/${id}/rate`, { note: rating }),
-  getWithRating: (id) => api.get(`/properties/${id}/rating`)
+  rate: (id, rating) => api.post(`/properties/${id}/rate`, { rating }),
+  getWithRating: (id) => api.get(`/properties/${id}/rating`),
+  recordVisit: (id) => api.post(`/properties/${id}/visit`),
+};
+
+// ------------------------------------------
+// Utilisateurs (données personnelles)
+// ------------------------------------------
+export const userAPI = {
+  getVisited: (params = {}) => api.get('/users/visited', { params }),
+  getStats: () => api.get('/users/stats'),
+  changePassword: (id, currentPassword, newPassword) => api.patch(`/users/${id}/password`, { currentPassword, newPassword }),
+  uploadAvatar: (id, file) => {
+    const formData = new FormData();
+    formData.append('avatar', file);
+    return api.post(`/users/${id}/avatar`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
+  deleteAvatar: (id) => api.delete(`/users/${id}/avatar`),
 };
 
 // ------------------------------------------

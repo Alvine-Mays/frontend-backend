@@ -27,6 +27,7 @@ const propertySchema = new mongoose.Schema(
       },
     ],
     noteMoyenne: { type: Number, default: 0 },
+    vues: { type: Number, default: 0 },
     utilisateur: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

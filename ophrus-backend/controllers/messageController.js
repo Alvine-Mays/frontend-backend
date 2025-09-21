@@ -2,19 +2,24 @@ const asyncHandler = require("express-async-handler");
 const Message = require("../models/Message");
 const User = require("../models/User");
 const { logger } = require('../utils/logging');
+const { getIO } = require('../sockets');
 
 const OPHRUS_EMAIL = "ophrus@example.com";
 
-// Obtenir l'ID de l'utilisateur Ophrus
+// Obtenir l'ID de l'utilisateur Ophrus (fallback sur un admin)
 const getOphrusUser = async () => {
   try {
     logger.debug("Recherche utilisateur Ophrus");
-    const user = await User.findOne({ email: OPHRUS_EMAIL });
-    if (!user) throw new Error("L'utilisateur Ophrus n'existe pas.");
-    logger.debug(`Utilisateur Ophrus trouvé - ID: ${user._id}`);
+    let user = await User.findOne({ email: OPHRUS_EMAIL });
+    if (!user) {
+      logger.warn("Utilisateur Ophrus introuvable, fallback sur un admin");
+      user = await User.findOne({ role: 'admin' });
+    }
+    if (!user) throw new Error("Aucun utilisateur admin trouvé pour recevoir le message.");
+    logger.debug(`Utilisateur destinataire trouvé - ID: ${user._id}`);
     return user._id;
   } catch (error) {
-    logger.error(`Erreur recherche utilisateur Ophrus: ${error.message}`, {
+    logger.error(`Erreur destinataire Ophrus/admin: ${error.message}`, {
       stack: error.stack
     });
     throw error;
@@ -38,8 +43,18 @@ const envoyerMessage = asyncHandler(async (req, res) => {
       contenu,
     });
 
+    const populated = await Message.findById(message._id)
+      .populate('expediteur', 'nom email')
+      .populate('destinataire', 'nom email');
+
+    try {
+      const io = getIO();
+      io.to(`user:${destinataireId}`).emit('message:new', populated);
+      io.to(`user:${req.user._id}`).emit('message:new', populated);
+    } catch (_) {}
+
     logger.info(`Message envoyé - ID: ${message._id}`);
-    res.status(201).json(message);
+    res.status(201).json(populated);
   } catch (err) {
     logger.error(`Erreur envoi message: ${err.message}`, {
       stack: err.stack,
@@ -67,8 +82,18 @@ const contacterOphrus = asyncHandler(async (req, res) => {
       contenu,
     });
 
+    const populated = await Message.findById(message._id)
+      .populate('expediteur', 'nom email')
+      .populate('destinataire', 'nom email');
+
+    try {
+      const io = getIO();
+      io.to(`user:${ophrusId}`).emit('message:new', populated);
+      io.to(`user:${req.user._id}`).emit('message:new', populated);
+    } catch (_) {}
+
     logger.info(`Message à Ophrus envoyé - ID: ${message._id}`);
-    res.status(201).json({ message: "Message envoyé à Ophrus.", data: message });
+    res.status(201).json({ message: "Message envoyé à Ophrus.", data: populated });
   } catch (err) {
     logger.error(`Erreur contact Ophrus: ${err.message}`, {
       stack: err.stack,
@@ -84,20 +109,28 @@ const contacterOphrus = asyncHandler(async (req, res) => {
 const getMessagesAvec = asyncHandler(async (req, res) => {
   try {
     const autreId = req.params.userId;
-    logger.debug(`Récupération conversation - User1: ${req.user._id}, User2: ${autreId}`);
+    const page = parseInt(req.query.page) || 1;
+    const limit = Math.min(parseInt(req.query.limit) || 20, 100);
+    logger.debug(`Récupération conversation - User1: ${req.user._id}, User2: ${autreId}, page:${page}, limit:${limit}`);
 
-    const messages = await Message.find({
+    const criteria = {
       $or: [
         { expediteur: req.user._id, destinataire: autreId },
         { expediteur: autreId, destinataire: req.user._id },
       ],
-    })
-    .populate("expediteur", "nom email")
-    .populate("destinataire", "nom email")
-    .sort({ createdAt: 1 });
+    };
 
-    logger.info(`Conversation récupérée - Messages: ${messages.length}`);
-    res.json(messages);
+    const total = await Message.countDocuments(criteria);
+    const messages = await Message.find(criteria)
+      .populate("expediteur", "nom email")
+      .populate("destinataire", "nom email")
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const reversed = messages.reverse();
+    logger.info(`Conversation récupérée - Messages page: ${reversed.length}/${total}`);
+    res.json({ page, limit, total, totalPages: Math.ceil(total / limit), messages: reversed });
   } catch (err) {
     logger.error(`Erreur récupération conversation: ${err.message}`, {
       stack: err.stack,
@@ -227,6 +260,11 @@ const markThreadRead = asyncHandler(async (req, res) => {
       },
       { $set: { lu: true } }
     );
+
+    try {
+      const io = getIO();
+      io.to(`user:${req.user._id}`).emit('thread:read', { userId: otherId });
+    } catch (_) {}
 
     logger.info(`Conversation marquée comme lue - Messages modifiés: ${result.modifiedCount}`);
     res.json({ message: "Conversation marquée comme lue." });

@@ -74,18 +74,35 @@ export const AuthProvider = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
       const response = await authAPI.login(email, password);
-      const { user, token } = response.data;
+      const { token } = response.data;
 
       localStorage.setItem('token', token);
-      dispatch({ type: 'SET_USER', payload: { user, token } });
+      let profileUser = null;
+      try {
+        const me = await authAPI.getProfile();
+        profileUser = me.data;
+      } catch (_) {}
+      dispatch({ type: 'SET_USER', payload: { user: profileUser || response.data.user, token } });
 
       toast.success('Connexion réussie !');
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Erreur de connexion';
+      const data = error.response?.data || {};
+      const fieldErrors = {};
+      if (Array.isArray(data.errors)) {
+        data.errors.forEach((e) => {
+          if (e?.param && e?.msg) fieldErrors[e.param] = e.msg;
+        });
+      }
+      let message = data.message || 'Erreur de connexion';
+      if (message === 'Utilisateur non trouvé.') {
+        fieldErrors.email = fieldErrors.email || message;
+      } else if (message === 'Mot de passe incorrect.') {
+        fieldErrors.password = fieldErrors.password || message;
+      }
       dispatch({ type: 'SET_ERROR', payload: message });
       toast.error(message);
-      return { success: false, message }; // ✅ Correction ici
+      return { success: false, message, fieldErrors };
     }
   };
 
@@ -94,17 +111,32 @@ export const AuthProvider = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
       const response = await authAPI.register(userData);
-      const { user, token } = response.data;
+      const { token } = response.data;
 
       localStorage.setItem('token', token);
-      dispatch({ type: 'SET_USER', payload: { user, token } });
+      let profileUser = null;
+      try {
+        const me = await authAPI.getProfile();
+        profileUser = me.data;
+      } catch (_) {}
+      dispatch({ type: 'SET_USER', payload: { user: profileUser || response.data.user, token } });
       toast.success('Inscription réussie !');
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || "Erreur d'inscription";
+      const data = error.response?.data || {};
+      const fieldErrors = {};
+      if (Array.isArray(data.errors)) {
+        data.errors.forEach((e) => {
+          if (e?.param && e?.msg) fieldErrors[e.param] = e.msg;
+        });
+      }
+      let message = data.message || "Erreur d'inscription";
+      if (message === 'Utilisateur déjà inscrit.') {
+        fieldErrors.email = fieldErrors.email || message;
+      }
       dispatch({ type: 'SET_ERROR', payload: message });
       toast.error(message);
-      return { success: false, message }; // ✅ Correction ici aussi
+      return { success: false, message, fieldErrors };
     }
   };
 

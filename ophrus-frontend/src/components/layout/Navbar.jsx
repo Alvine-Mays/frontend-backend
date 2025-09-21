@@ -29,13 +29,15 @@ const Navbar = () => {
     { path: '/contact', label: 'Contact', icon: null },
   ];
 
-  const authenticatedLinks = [
+  const baseAuthLinks = [
     { path: '/dashboard', label: 'Tableau de bord', icon: Settings },
     { path: '/messages', label: 'Messages', icon: MessageSquare, badge: unreadCount },
     { path: '/favorites', label: 'Favoris', icon: Heart },
-    { path: '/add-property', label: 'Ajouter', icon: Plus },
     { path: '/profile', label: 'Profil', icon: User },
   ];
+  const authenticatedLinks = user?.role === 'admin'
+    ? [...baseAuthLinks.slice(0, 1), { path: '/add-property', label: 'Ajouter', icon: Plus }, ...baseAuthLinks.slice(1)]
+    : baseAuthLinks;
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-40">
@@ -64,7 +66,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Auth Section */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-6">
             {isAuthenticated ? (
               <>
                 {authenticatedLinks.map((link) => (
@@ -78,15 +80,15 @@ const Navbar = () => {
                   >
                     {link.icon && <link.icon className="w-4 h-4" />}
                     <span>{link.label}</span>
-                    {link.badge > 0 && (
+                    {typeof link.badge === 'number' && link.badge > 0 && (
                       <Badge variant="primary" size="sm" className="ml-1">
                         {link.badge}
                       </Badge>
                     )}
                   </Link>
                 ))}
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <span>Bonjour, {user?.nom}</span>
+                <div className="flex items-center text-sm text-gray-600 max-w-[160px]">
+                  <span className="truncate">Bonjour, {user?.nom}</span>
                 </div>
                 <Button
                   variant="ghost"
@@ -114,7 +116,12 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            {isAuthenticated && (
+              <Link to="/dashboard" className="mr-3 text-gray-700 hover:text-blue-primary">
+                <Settings className="w-5 h-5" />
+              </Link>
+            )}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 hover:text-blue-primary transition-colors"
@@ -148,7 +155,7 @@ const Navbar = () => {
                 <>
                   <div className="border-t border-gray-200 pt-4">
                     <div className="text-sm text-gray-600 mb-4">
-                      Bonjour, {user?.nom}
+                      Bonjour, {user?.nom} {user?.role === 'admin' ? '(admin)' : ''}
                     </div>
                     {authenticatedLinks.map((link) => (
                       <Link
@@ -164,7 +171,7 @@ const Navbar = () => {
                           {link.icon && <link.icon className="w-4 h-4" />}
                           <span>{link.label}</span>
                         </div>
-                        {link.badge > 0 && (
+                        {typeof link.badge === 'number' && link.badge > 0 && (
                           <Badge variant="primary" size="sm">
                             {link.badge}
                           </Badge>

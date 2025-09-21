@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Bed, Bath, Square, Star, Eye } from 'lucide-react';
+import { Heart, MapPin, Bed, Bath, Square, Eye } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useProperty } from '../../contexts/PropertyContext';
 import { formatPrice, getImageUrl, getPropertyTypeIcon } from '../../lib/utils';
 import {Button} from '../ui/Button';
 import { cn } from '../../lib/utils';
+import StarRating from '../common/StarRating';
 
 const PropertyCard = ({ property, className }) => {
   const { isAuthenticated } = useAuth();
@@ -135,13 +136,7 @@ const PropertyCard = ({ property, className }) => {
 
         {/* Rating and Actions */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-1">
-            <Star className="w-4 h-4 text-blue-primary fill-current" />
-            <span className="text-sm text-gray-600">
-              {property.noteMoyenne ? property.noteMoyenne.toFixed(1) : 'N/A'}
-            </span>
-          </div>
-
+          <StarRating value={property.noteMoyenne || 0} />
           <Link to={`/properties/${property._id}`}>
             <Button variant="outline" size="sm">
               Détails

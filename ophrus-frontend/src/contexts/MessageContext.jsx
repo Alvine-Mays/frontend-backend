@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import * as messageAPI from '../lib/api';
+import * as api from '../lib/api';
 import toast from 'react-hot-toast';
 
 const MessageContext = createContext();
@@ -20,40 +20,54 @@ export const MessageProvider = ({ children }) => {
   const [currentConversation, setCurrentConversation] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [inboxPage, setInboxPage] = useState(1);
+  const [inboxTotalPages, setInboxTotalPages] = useState(1);
+  const [convPage, setConvPage] = useState(1);
+  const [convTotalPages, setConvTotalPages] = useState(1);
+  const socketRef = React.useRef(null);
 
   // Fetch inbox (list of conversations)
-  const fetchInbox = async () => {
+  const fetchInbox = async (page = 1, { silent = false } = {}) => {
     if (!user) return;
     
     try {
-      setLoading(true);
-      const response = await messageAPI.get('/messages/inbox');
-      setConversations(response.data.conversations || []);
+      if (!silent) setLoading(true);
+      const response = await api.get('/messages/inbox', { params: { page, limit: 10 } });
+      const threads = response.data?.threads || [];
+      const normalized = threads.map(t => ({
+        otherUser: t.correspondant,
+        lastMessage: t.dernierMessage,
+        unreadCount: t.nonLus || 0,
+      }));
+      setConversations(page === 1 ? normalized : [...conversations, ...normalized]);
+      setInboxPage(response.data?.page || page);
+      setInboxTotalPages(response.data?.totalPages || 1);
     } catch (error) {
       console.error('Error fetching inbox:', error);
       toast.error('Erreur lors du chargement de la boîte de réception');
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
   // Fetch messages with a specific user
-  const fetchMessagesWithUser = async (userId) => {
+  const fetchMessagesWithUser = async (userId, page = 1, { silent = false } = {}) => {
     if (!user) return;
     
     try {
-      setLoading(true);
-      const response = await messageAPI.get(`/messages/${userId}`);
-      setMessages(response.data.messages || []);
+      if (!silent) setLoading(true);
+      const response = await api.get(`/messages/${userId}`, { params: { page, limit: 20 } });
+      const list = response.data?.messages || response.data || [];
+      setMessages(page === 1 ? list : [...list, ...messages]);
       setCurrentConversation(userId);
-      
-      // Mark thread as read
+      setConvPage(response.data?.page || page);
+      setConvTotalPages(response.data?.totalPages || 1);
       await markThreadAsRead(userId);
     } catch (error) {
       console.error('Error fetching messages:', error);
       toast.error('Erreur lors du chargement des messages');
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
@@ -62,17 +76,16 @@ export const MessageProvider = ({ children }) => {
     if (!user) return { success: false };
     
     try {
-      const response = await messageAPI.post(`/messages/${receiverId}`, {
+      const response = await api.post(`/messages/${receiverId}`, {
         contenu: content
       });
-      
-      // Add the new message to current conversation
+      const sent = response.data;
       if (currentConversation === receiverId) {
-        setMessages(prev => [...prev, response.data.message]);
+        setMessages(prev => [...prev, sent]);
       }
       
       // Refresh inbox to update conversation list
-      fetchInbox();
+      fetchInbox(1, { silent: true });
       
       toast.success('Message envoyé avec succès');
       return { success: true, message: response.data.message };
@@ -88,7 +101,7 @@ export const MessageProvider = ({ children }) => {
     if (!user) return { success: false };
     
     try {
-      const response = await messageAPI.post('/messages/ophrus', {
+      const response = await api.post('/messages/ophrus', {
         sujet: subject,
         contenu: content
       });
@@ -96,7 +109,7 @@ export const MessageProvider = ({ children }) => {
       toast.success("Message envoyé à l'administration");
       
       // Refresh inbox
-      fetchInbox();
+      fetchInbox(1, { silent: true });
       
       return { success: true, message: response.data.message };
     } catch (error) {
@@ -111,8 +124,8 @@ export const MessageProvider = ({ children }) => {
     if (!user) return;
     
     try {
-      const response = await messageAPI.get('/messages/unread');
-      setUnreadCount(response.data.count || 0);
+      const response = await api.get('/messages/unread');
+      setUnreadCount(response.data?.unread || 0);
     } catch (error) {
       console.error('Error fetching unread count:', error);
     }
@@ -121,7 +134,7 @@ export const MessageProvider = ({ children }) => {
   // Mark message as read
   const markMessageAsRead = async (messageId) => {
     try {
-      await messageAPI.patch(`/messages/${messageId}/read`);
+      await api.patch(`/messages/${messageId}/read`);
       
       // Update local state
       setMessages(prev => 
@@ -140,23 +153,9 @@ export const MessageProvider = ({ children }) => {
   // Mark thread as read
   const markThreadAsRead = async (userId) => {
     try {
-      await messageAPI.patch(`/messages/thread/${userId}/read`);
-      
-      // Update local state
-      setMessages(prev => 
-        prev.map(msg => ({ ...msg, lu: true }))
-      );
-      
-      // Update conversations
-      setConversations(prev =>
-        prev.map(conv =>
-          conv.otherUser._id === userId 
-            ? { ...conv, unreadCount: 0 }
-            : conv
-        )
-      );
-      
-      // Update unread count
+      await api.patch(`/messages/thread/${userId}/read`);
+      setMessages(prev => prev.map(msg => ({ ...msg, lu: true })));
+      setConversations(prev => prev.map(conv => conv.otherUser._id === userId ? { ...conv, unreadCount: 0 } : conv));
       fetchUnreadCount();
     } catch (error) {
       console.error('Error marking thread as read:', error);
@@ -169,10 +168,63 @@ export const MessageProvider = ({ children }) => {
     setMessages([]);
   };
 
+  // Socket.IO temps réel
+  useEffect(() => {
+    if (!user) return;
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+      socketRef.current = null;
+    }
+
+    import('socket.io-client')
+      .then(({ io }) => {
+        const base = (import.meta.env.VITE_API_URL || '').replace(/\/api$/, '');
+        const token = localStorage.getItem('token');
+        const socket = io(base, { auth: { token }, transports: ['websocket'] });
+        socketRef.current = socket;
+
+        socket.on('connect', () => {
+          socket.emit('join', user._id || user.id);
+        });
+
+        socket.on('message:new', (msg) => {
+          const otherId =
+            msg.expediteur?._id === (user._id || user.id)
+              ? msg.destinataire?._id
+              : msg.expediteur?._id;
+
+          if (currentConversation && otherId === currentConversation) {
+            setMessages(prev => [...prev, msg]);
+            fetchMessagesWithUser(currentConversation, 1, { silent: true });
+          } else {
+            fetchInbox(1, { silent: true });
+            fetchUnreadCount();
+          }
+        });
+
+        socket.on('thread:read', ({ userId }) => {
+          if (currentConversation === userId) {
+            setMessages(prev => prev.map(m => ({ ...m, lu: true })));
+          } else {
+            fetchInbox(1, { silent: true });
+          }
+        });
+
+        return () => {
+          if (socketRef.current) socketRef.current.disconnect();
+          socketRef.current = null;
+        };
+      })
+      .catch((e) => {
+        console.warn("⚠️ socket.io-client non installé ou erreur d'import:", e);
+      });
+
+  }, [user, currentConversation]);
+
   // Initialize data when user changes
   useEffect(() => {
     if (user) {
-      fetchInbox();
+      fetchInbox(1, { silent: true });
       fetchUnreadCount();
     } else {
       setConversations([]);
@@ -190,6 +242,10 @@ export const MessageProvider = ({ children }) => {
     loading,
     fetchInbox,
     fetchMessagesWithUser,
+    inboxPage,
+    inboxTotalPages,
+    convPage,
+    convTotalPages,
     sendMessage,
     contactOphrus,
     fetchUnreadCount,
@@ -206,4 +262,3 @@ export const MessageProvider = ({ children }) => {
 };
 
 export default MessageContext;
-

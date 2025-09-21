@@ -1,14 +1,15 @@
 require('dotenv').config();
-const http = require('http');
 const app = require('./app');
-const { init: initSockets } = require('./sockets');
 const PORT = process.env.PORT || 5000;  
 
 require('./config/db')()
   .then(async () => {   
+    // Configuration du nettoyage en production
     if (process.env.NODE_ENV === 'production') {
       const cron = require('node-cron');
       const { cleanExpiredResetCodes } = require('./utils/dbCleaner');
+      
+      // Toutes les 10 minutes
       cron.schedule('*/10 * * * *', async () => {
         try {
           console.log('🧹 Nettoyage des codes de réinitialisation expirés...');
@@ -17,13 +18,12 @@ require('./config/db')()
           console.error('❌ Erreur lors du nettoyage:', err.message);
         }
       });
+
       console.log('🔄 Nettoyage automatique activé (toutes les 10 minutes)');
     }
 
-    const server = http.createServer(app);
-    initSockets(server);
-
-    server.listen(PORT, () => {
+    // Lancer le serveur après TOUTES les initialisations
+    app.listen(PORT, () => {
       console.log(`✅ Server running on port ${PORT}`);
       console.log(`⚡ Mode: ${process.env.NODE_ENV || 'development'}`);
     });

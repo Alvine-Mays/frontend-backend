@@ -91,12 +91,12 @@ function App() {
                               </ProtectedRoute>
                             } />
                             <Route path="/add-property" element={
-                              <ProtectedRoute>
+                              <ProtectedRoute adminOnly>
                                 <AddPropertyPage />
                               </ProtectedRoute>
                             } />
                             <Route path="/edit-property/:id" element={
-                              <ProtectedRoute>
+                              <ProtectedRoute adminOnly>
                                 <EditPropertyPage />
                               </ProtectedRoute>
                             } />

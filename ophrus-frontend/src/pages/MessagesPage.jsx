@@ -27,6 +27,11 @@ const MessagesPage = () => {
     currentConversation,
     unreadCount,
     loading,
+    fetchInbox,
+    inboxPage,
+    inboxTotalPages,
+    convPage,
+    convTotalPages,
     fetchMessagesWithUser,
     sendMessage,
     contactOphrus,
@@ -106,8 +111,8 @@ const MessagesPage = () => {
   };
 
   const filteredConversations = conversations.filter(conv =>
-    conv.otherUser.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    conv.lastMessage?.contenu.toLowerCase().includes(searchTerm.toLowerCase())
+    (conv.otherUser?.nom || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (conv.lastMessage?.contenu || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const renderConversationList = () => (
@@ -157,53 +162,62 @@ const MessagesPage = () => {
             </Button>
           </div>
         ) : (
-          <div className="divide-y divide-gray-200">
-            {filteredConversations.map((conversation) => (
-              <div
-                key={conversation.otherUser._id}
-                onClick={() => handleConversationClick(conversation.otherUser._id)}
-                className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${
-                  currentConversation === conversation.otherUser._id ? 'bg-blue-50 border-r-2 border-blue-500' : ''
-                }`}
-              >
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-semibold">
-                      {conversation.otherUser.nom.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900 truncate">
-                        {conversation.otherUser.nom}
-                      </p>
-                      {conversation.lastMessage && (
-                        <p className="text-xs text-gray-500">
-                          {formatTime(conversation.lastMessage.createdAt)}
-                        </p>
-                      )}
+          <>
+            <div className="divide-y divide-gray-200">
+              {filteredConversations.map((conversation) => (
+                <div
+                  key={conversation.otherUser._id}
+                  onClick={() => handleConversationClick(conversation.otherUser._id)}
+                  className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${
+                    currentConversation === conversation.otherUser._id ? 'bg-blue-50 border-r-2 border-blue-500' : ''
+                  }`}
+                >
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-semibold">
+                        {conversation.otherUser.nom.charAt(0).toUpperCase()}
+                      </span>
                     </div>
                     
-                    {conversation.lastMessage && (
-                      <p className="text-sm text-gray-600 truncate mt-1">
-                        {conversation.lastMessage.contenu}
-                      </p>
-                    )}
-                    
-                    {conversation.unreadCount > 0 && (
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="text-xs text-gray-500">
-                          {conversation.unreadCount} non lu{conversation.unreadCount > 1 ? 's' : ''}
-                        </span>
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {conversation.otherUser.nom}
+                        </p>
+                        {conversation.lastMessage && (
+                          <p className="text-xs text-gray-500">
+                            {formatTime(conversation.lastMessage.createdAt)}
+                          </p>
+                        )}
                       </div>
-                    )}
+                      
+                      {conversation.lastMessage && (
+                        <p className="text-sm text-gray-600 truncate mt-1">
+                          {conversation.lastMessage.contenu}
+                        </p>
+                      )}
+                      
+                      {conversation.unreadCount > 0 && (
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="text-xs text-gray-500">
+                            {conversation.unreadCount} non lu{conversation.unreadCount > 1 ? 's' : ''}
+                          </span>
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+            {inboxPage < inboxTotalPages && (
+              <div className="p-4">
+                <Button variant="outline" className="w-full" onClick={() => fetchInbox(inboxPage + 1)}>
+                  Charger plus de conversations
+                </Button>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -258,6 +272,13 @@ const MessagesPage = () => {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {currentConversation && convPage < convTotalPages && (
+              <div className="flex justify-center">
+                <Button variant="outline" size="sm" onClick={() => fetchMessagesWithUser(currentConversation, convPage + 1)}>
+                  Charger plus d'anciens messages
+                </Button>
+              </div>
+            )}
             {loading ? (
               <div className="flex justify-center py-8">
                 <LoadingSpinner />

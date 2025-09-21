@@ -81,7 +81,7 @@ exports.registerUser = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      user: { _id: user._id, nom: user.nom, email: user.email },
+      user: { _id: user._id, nom: user.nom, email: user.email, telephone: user.telephone, role: user.role },
       token,
       message: "Inscription réussie."
     });
@@ -147,7 +147,7 @@ exports.loginUser = async (req, res) => {
 
     res.json({
       success: true,
-      user: { _id: user._id, nom: user.nom, email: user.email },
+      user: { _id: user._id, nom: user.nom, email: user.email, telephone: user.telephone, role: user.role },
       token
     });
   } catch (error) {
@@ -285,6 +285,9 @@ exports.updateUser = async (req, res) => {
       nom: user.nom,
       email: user.email,
       telephone: user.telephone,
+      avatarUrl: user.avatarUrl,
+      role: user.role,
+      createdAt: user.createdAt,
     });
   } catch (error) {
     logger.error(`Erreur lors de la mise à jour du profil: ${error.message}`, {
@@ -629,4 +632,62 @@ exports.getDeletedUsers = async (req, res) => {
     logger.error(`Erreur liste utilisateurs supprimés: ${error.message}`);
     res.status(500).json({ message: "Erreur serveur" });
   }
-}; 
+};
+
+// Changer le mot de passe (utilisateur authentifié)
+exports.changePassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { currentPassword, newPassword } = req.body;
+
+    if (req.user.id !== id) {
+      return res.status(403).json({ message: 'Accès interdit.' });
+    }
+
+    const user = await User.findById(id).select('+password');
+    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Mot de passe actuel incorrect.' });
+    }
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    return res.json({ message: 'Mot de passe mis à jour.' });
+  } catch (error) {
+    logger.error(`Erreur changement mot de passe: ${error.message}`, { stack: error.stack, userId: req.params.id });
+    return res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
+// Statistiques utilisateur (favoris, visites, notes données)
+exports.getUserStats = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId).select('favoris visited');
+    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+
+    const favoritesCount = Array.isArray(user.favoris) ? user.favoris.length : 0;
+    const visitedCount = Array.isArray(user.visited) ? user.visited.length : 0;
+
+    const Property = require('../models/Property');
+    const properties = await Property.find({ 'evaluations.utilisateur': userId }).select('evaluations');
+    let ratingsCount = 0;
+    let sum = 0;
+    properties.forEach(p => {
+      const evalUser = p.evaluations.find(e => e.utilisateur.toString() === userId);
+      if (evalUser) {
+        ratingsCount += 1;
+        sum += evalUser.note;
+      }
+    });
+    const avgGiven = ratingsCount > 0 ? (sum / ratingsCount) : 0;
+
+    return res.json({ favoritesCount, visitedCount, ratingsCount, avgGiven });
+  } catch (error) {
+    logger.error(`Erreur stats utilisateur: ${error.message}`, { stack: error.stack, userId: req.user?.id });
+    return res.status(500).json({ message: 'Erreur serveur' });
+  }
+};

@@ -24,7 +24,6 @@ app.use(security.morgan);               // Logging HTTP
 app.use(security.secureHeaders);        // Headers de sécurité
 app.use(security.corsOptions);          // CORS
 app.use(security.preventHPP);           // Protection HPP
-app.use("/api/", security.limiter);     // Rate Limiting sur les API
 app.use(security.xssProtection);        // Protection XSS
 
 // 📦 Middlewares globaux
@@ -48,6 +47,9 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/favoris", require("./routes/favorisRoutes"));
 app.use("/api/messages", require("./routes/messageRoutes"));
 app.use("/api/reservations", require("./routes/reservationRoutes"));
+
+// 📂 Fichiers statiques (uploads)
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 
 // 🧪 Route de santé (Healthcheck)
 app.get("/health", (req, res) => {

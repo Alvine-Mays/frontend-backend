@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 import {Button} from '../components/ui/Button';
 import {Input} from '../components/ui/Input';
 import { validateEmail, validatePhone } from '../lib/utils';
+import Alert from '../components/common/Alert';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { register, loading, isAuthenticated } = useAuth();
+  const { register, loading, isAuthenticated, clearError } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +31,11 @@ const RegisterPage = () => {
       navigate('/dashboard', { replace: true });
     }
   }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    clearError();
+    return () => clearError();
+  }, [clearError]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -68,8 +74,8 @@ const RegisterPage = () => {
       newErrors.password = 'Le mot de passe est requis';
     } else if (formData.password.length < 8) {
       newErrors.password = 'Minimum 8 caractères';
-    } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/.test(formData.password)) {
-      newErrors.password = 'Inclure une majuscule, un chiffre et un symbole';
+    } else if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(formData.password)) {
+      newErrors.password = 'Inclure une majuscule, une minuscule, un chiffre et un symbole';
     }
 
     if (!formData.confirmPassword) {
@@ -97,14 +103,12 @@ const RegisterPage = () => {
       if (result.success) {
         navigate('/dashboard', { replace: true });
       } else {
-        setErrors((prev) => ({
-          ...prev,
-          email: result.message || 'Erreur lors de l’inscription',
-        }));
+        const fieldErrors = result.fieldErrors || {};
+        setErrors({ ...fieldErrors, general: result.message || '' });
       }
     } catch (err) {
       console.error(err);
-      alert("Une erreur s'est produite. Veuillez réessayer.");
+      setErrors((prev) => ({ ...prev, general: "Une erreur s'est produite. Veuillez réessayer." }));
     }
   };
 
@@ -134,6 +138,9 @@ const RegisterPage = () => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-xl rounded-xl sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {errors.general && (
+              <Alert type="error">{errors.general}</Alert>
+            )}
             {/* Nom complet */}
             <Input
               label="Nom complet"
@@ -144,6 +151,9 @@ const RegisterPage = () => {
               error={errors.nom}
               placeholder="Votre nom complet"
             />
+            {errors.nom && (
+              <p className="text-xs text-red-600 mt-1">{errors.nom}</p>
+            )}
 
             {/* Email */}
             <Input
@@ -155,6 +165,9 @@ const RegisterPage = () => {
               error={errors.email}
               placeholder="votre@email.com"
             />
+            {errors.email && (
+              <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+            )}
 
             {/* Téléphone */}
             <Input
@@ -166,32 +179,57 @@ const RegisterPage = () => {
               error={errors.telephone}
               placeholder="+242 06 123 45 67"
             />
+            {errors.telephone && (
+              <p className="text-xs text-red-600 mt-1">{errors.telephone}</p>
+            )}
 
             {/* Mot de passe */}
-            <Input
-              label="Mot de passe"
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              error={errors.password}
-              placeholder="••••••••"
-              icon={showPassword ? EyeOff : Eye}
-              onIconClick={() => setShowPassword((prev) => !prev)}
-            />
+            <div className="relative">
+              <Input
+                label="Mot de passe"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+                placeholder="••••••••"
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-xs text-red-600 mt-1">{errors.password}</p>
+            )}
 
             {/* Confirmation mot de passe */}
-            <Input
-              label="Confirmer le mot de passe"
-              type={showConfirmPassword ? 'text' : 'password'}
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword}
-              placeholder="••••••••"
-              icon={showConfirmPassword ? EyeOff : Eye}
-              onIconClick={() => setShowConfirmPassword((prev) => !prev)}
-            />
+            <div className="relative">
+              <Input
+                label="Confirmer le mot de passe"
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword}
+                placeholder="••••••••"
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
+            {errors.confirmPassword && (
+              <p className="text-xs text-red-600 mt-1">{errors.confirmPassword}</p>
+            )}
 
             {/* CGU */}
             <div className="flex items-center">

@@ -11,7 +11,8 @@
     "test:coverage": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "docs": "node scripts/generateDocs.js"
+    "docs": "node scripts/generateDocs.js",
+    "seed:demo": "node scripts/seedDemoData.js"
   },
   "keywords": [
     "immobilier",
@@ -48,6 +49,7 @@
     "nodemailer-express-handlebars": "^7.0.0",
     "redis": "^4.7.1",
     "resend": "^4.7.0",
+    "socket.io": "^4.8.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",

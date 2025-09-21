@@ -10,6 +10,7 @@ const {
   rateProperty,
   getPropertyWithRating,
 } = require("../controllers/propertyController");
+const { recordVisit } = require("../controllers/visitedController");
 
 const { protect, adminOnly } = require("../middlewares/authMiddleware");
 const upload = require("../middlewares/multer");
@@ -32,5 +33,6 @@ router.delete("/:id", protect, adminOnly, deleteProperty);
 router.post("/:id/favoris", protect, toggleFavori);
 router.post("/:id/rate", protect, rateProperty);
 router.get("/:id/rating", protect, getPropertyWithRating);
+router.post("/:id/visit", protect, recordVisit);
 
 module.exports = router;

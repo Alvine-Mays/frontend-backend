@@ -3,14 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Heart, MapPin, Bed, Bath, Square, Star, Phone, Mail, 
   ArrowLeft, Share2, Calendar, Eye, Car, Waves, TreePine,
-  Home, Shield, Award
+  Home, Shield, Award, ChevronLeft, ChevronRight
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 import { useProperty } from '../contexts/PropertyContext';
 import {Button} from '../components/ui/Button';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import Modal from '../components/ui/Modal';
 import { formatPrice, formatDate, getImageUrl, getPropertyTypeIcon } from '../lib/utils';
+import StarRating from '../components/common/StarRating';
+import { propertyAPI } from '../lib/api';
 import { cn } from '../lib/utils';
 import SEOHead from '../components/seo/SEOHead';
 import { seoConfig, generatePropertyStructuredData } from '../utils/seoData';
@@ -33,11 +36,60 @@ const PropertyDetailPage = () => {
   const [userRating, setUserRating] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
 
+  const images = property?.images || [];
+
+  const nextImage = () => {
+    if (!images.length) return;
+    setSelectedImageIndex((prev) => (prev + 1) % images.length);
+  };
+  const prevImage = () => {
+    if (!images.length) return;
+    setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+  useEffect(() => {
+    if (!showImageModal) return;
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') setShowImageModal(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showImageModal, images.length]);
+
   useEffect(() => {
     if (id) {
       fetchPropertyById(id);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (!property?._id) return;
+
+    try {
+      const key = 'visitedProperties';
+      const existing = JSON.parse(localStorage.getItem(key) || '[]');
+      const without = existing.filter((p) => p._id !== property._id);
+      const entry = {
+        _id: property._id,
+        titre: property.titre,
+        ville: property.ville,
+        prix: property.prix,
+        image: property.images?.[0]?.url || null,
+        noteMoyenne: property.noteMoyenne || 0,
+      };
+      const updated = [entry, ...without].slice(0, 10);
+      localStorage.setItem(key, JSON.stringify(updated));
+    } catch (_) {}
+
+    (async () => {
+      try {
+        if (isAuthenticated) {
+          await propertyAPI.recordVisit(property._id);
+        }
+      } catch (_) {}
+    })();
+  }, [property, isAuthenticated]);
 
   const isFavorite = favorites.includes(id);
 
@@ -59,20 +111,24 @@ const PropertyDetailPage = () => {
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
-      try {
+    try {
+      if (navigator.share) {
         await navigator.share({
           title: property.titre,
           text: property.description,
           url: window.location.href,
         });
-      } catch (error) {
-        console.log('Error sharing:', error);
+        return;
       }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      alert('Lien copié dans le presse-papiers !');
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success('Lien copié dans le presse-papiers');
+    } catch (error) {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Lien copié dans le presse-papiers');
+      } catch (e) {
+        console.log('Share fallback error:', e);
+      }
     }
   };
 
@@ -97,7 +153,7 @@ const PropertyDetailPage = () => {
     );
   }
 
-  const images = property.images || [];
+  // images already defined above
   const features = [];
   
   if (property.nombre_chambres) features.push({ icon: Bed, label: `${property.nombre_chambres} chambre${property.nombre_chambres > 1 ? 's' : ''}` });
@@ -224,16 +280,11 @@ const PropertyDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">
+                <div className="flex flex-col items-end gap-1">
+                  <div className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-600 leading-none">
                     {formatPrice(property.prix)}
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 text-blue-primary fill-current" />
-                    <span className="text-sm text-gray-600">
-                      {property.noteMoyenne ? property.noteMoyenne.toFixed(1) : 'N/A'}
-                    </span>
-                  </div>
+                  <StarRating value={property.noteMoyenne || 0} />
                 </div>
               </div>
 
@@ -447,18 +498,47 @@ const PropertyDetailPage = () => {
         size="full"
         className="p-0"
       >
-        <div className="relative">
-          <img
-            src={getImageUrl(images[selectedImageIndex]?.url)}
-            alt={property.titre}
-            className="w-full h-auto max-h-[80vh] object-contain"
-          />
+        <div className="relative bg-black">
           <button
             onClick={() => setShowImageModal(false)}
-            className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-colors"
+            className="absolute top-4 right-4 z-20 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
           >
             ×
           </button>
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+          <div className="w-full h-[80vh] flex items-center justify-center">
+            <img
+              src={getImageUrl(images[selectedImageIndex]?.url)}
+              alt={property.titre}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+          {images.length > 1 && (
+            <div className="p-4 bg-black/90">
+              <div className="flex gap-2 overflow-x-auto">
+                {images.map((image, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border ${selectedImageIndex === idx ? 'border-blue-500' : 'border-transparent'}`}
+                  >
+                    <img src={getImageUrl(image.url)} alt={`${property.titre} ${idx+1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </Modal>
     </div>

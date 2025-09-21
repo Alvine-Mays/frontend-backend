@@ -36,6 +36,8 @@ const userSchema = new mongoose.Schema(
         message: "Numéro de téléphone invalide"
       }
     },
+    avatarUrl: { type: String, default: null },
+    avatarPublicId: { type: String, default: null },
     role: {
       type: String,
       enum: {
@@ -55,6 +57,13 @@ const userSchema = new mongoose.Schema(
         message: "Propriété introuvable"
       }
     }],
+    visited: [
+      {
+        property: { type: mongoose.Schema.Types.ObjectId, ref: 'Property', required: true },
+        lastVisitedAt: { type: Date, default: Date.now },
+        count: { type: Number, default: 1, min: 1 }
+      }
+    ],
     refreshTokens: {
       type: [String],
       default: [],

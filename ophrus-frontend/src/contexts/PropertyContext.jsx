@@ -185,8 +185,9 @@ export const PropertyProvider = ({ children }) => {
 
   const rateProperty = async (propertyId, rating) => {
     try {
-      const response = await propertyAPI.rate(propertyId, rating);
-      dispatch({ type: 'UPDATE_PROPERTY', payload: response.data });
+      await propertyAPI.rate(propertyId, rating);
+      const refreshed = await propertyAPI.getById(propertyId);
+      dispatch({ type: 'UPDATE_PROPERTY', payload: refreshed.data });
       toast.success('Note ajoutée avec succès');
       return { success: true };
     } catch (error) {

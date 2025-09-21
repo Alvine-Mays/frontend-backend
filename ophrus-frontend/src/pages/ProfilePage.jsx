@@ -7,6 +7,7 @@ import { validateEmail, validatePhone } from '../lib/utils';
 
 const ProfilePage = () => {
   const { user, updateProfile, loading } = useAuth();
+  const [localAvatar, setLocalAvatar] = useState(user?.avatarUrl || null);
   const [formData, setFormData] = useState({
     nom: user?.nom || '',
     email: user?.email || '',
@@ -14,6 +15,9 @@ const ProfilePage = () => {
   });
   const [errors, setErrors] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [pwdOpen, setPwdOpen] = useState(false);
+  const [pwdData, setPwdData] = useState({ currentPassword: '', newPassword: '', confirm: '' });
+  const [pwdErrors, setPwdErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +56,7 @@ const ProfilePage = () => {
     
     if (!validateForm()) return;
 
-    const result = await updateProfile({ ...formData, id: user.id });
+    const result = await updateProfile({ ...formData, id: user?._id || user?.id });
     
     if (result.success) {
       setIsEditing(false);
@@ -69,6 +73,39 @@ const ProfilePage = () => {
     setIsEditing(false);
   };
 
+  const validatePwd = () => {
+    const e = {};
+    if (!pwdData.currentPassword) e.currentPassword = 'Mot de passe actuel requis';
+    if (!pwdData.newPassword) e.newPassword = 'Nouveau mot de passe requis';
+    else if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(pwdData.newPassword)) e.newPassword = 'Doit contenir majuscule, minuscule, chiffre et symbole';
+    if (pwdData.newPassword !== pwdData.confirm) e.confirm = 'Les mots de passe ne correspondent pas';
+    setPwdErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handlePwdSave = async () => {
+    if (!validatePwd()) return;
+    try {
+      const { userAPI } = await import('../lib/api');
+      await userAPI.changePassword(user?._id || user?.id, pwdData.currentPassword, pwdData.newPassword);
+      setPwdOpen(false);
+      setPwdData({ currentPassword: '', newPassword: '', confirm: '' });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [stats, setStats] = useState({ favoritesCount: 0, visitedCount: 0, ratingsCount: 0, avgGiven: 0 });
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const { userAPI } = await import('../lib/api');
+        const res = await userAPI.getStats();
+        setStats(res.data || {});
+      } catch (e) {}
+    })();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,14 +120,40 @@ const ProfilePage = () => {
           <div className="bg-gradient-to-r from-yellow-600 to-yellow-500 px-6 py-8">
             <div className="flex items-center space-x-6">
               <div className="relative">
-                <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-white">
-                    {user?.nom?.charAt(0)?.toUpperCase() || 'U'}
-                  </span>
+                <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center overflow-hidden">
+                  {localAvatar ? (
+                    <img src={localAvatar} alt={user?.nom} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-3xl font-bold text-white">
+                      {user?.nom?.charAt(0)?.toUpperCase() || 'U'}
+                    </span>
+                  )}
                 </div>
-                <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
+                <label className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
                   <Camera className="w-4 h-4 text-gray-600" />
-                </button>
+                  <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    try {
+                      const { userAPI } = await import('../lib/api');
+                      const res = await userAPI.uploadAvatar(user?._id || user?.id, file);
+                      if (res?.data?.avatarUrl) {
+                        setLocalAvatar(res.data.avatarUrl);
+                      }
+                    } catch (err) {
+                      console.error(err);
+                    }
+                  }} />
+                </label>
+                {localAvatar && (
+                  <Button variant="outline" size="sm" className="mt-2" onClick={async () => {
+                    try {
+                      const { userAPI } = await import('../lib/api');
+                      await userAPI.deleteAvatar(user?._id || user?.id);
+                      setLocalAvatar(null);
+                    } catch (e) { console.error(e); }
+                  }}>Supprimer l'avatar</Button>
+                )}
               </div>
               <div className="text-white">
                 <h2 className="text-2xl font-bold">{user?.nom}</h2>
@@ -198,13 +261,33 @@ const ProfilePage = () => {
                   <Lock className="w-5 h-5 text-gray-400" />
                   <div>
                     <p className="font-medium text-gray-900">Mot de passe</p>
-                    <p className="text-sm text-gray-600">Dernière modification il y a 3 mois</p>
+                    <p className="text-sm text-gray-600">Changez votre mot de passe</p>
                   </div>
                 </div>
-                <Button variant="outline" size="sm">
-                  Modifier
+                <Button variant="outline" size="sm" onClick={() => setPwdOpen(v => !v)}>
+                  {pwdOpen ? 'Fermer' : 'Modifier'}
                 </Button>
               </div>
+              {pwdOpen && (
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <Input type="password" placeholder="Mot de passe actuel" value={pwdData.currentPassword} onChange={e => setPwdData({ ...pwdData, currentPassword: e.target.value })} error={pwdErrors.currentPassword} />
+                    {pwdErrors.currentPassword && <p className="text-xs text-red-600 mt-1">{pwdErrors.currentPassword}</p>}
+                  </div>
+                  <div>
+                    <Input type="password" placeholder="Nouveau mot de passe" value={pwdData.newPassword} onChange={e => setPwdData({ ...pwdData, newPassword: e.target.value })} error={pwdErrors.newPassword} />
+                    {pwdErrors.newPassword && <p className="text-xs text-red-600 mt-1">{pwdErrors.newPassword}</p>}
+                  </div>
+                  <div>
+                    <Input type="password" placeholder="Confirmer" value={pwdData.confirm} onChange={e => setPwdData({ ...pwdData, confirm: e.target.value })} error={pwdErrors.confirm} />
+                    {pwdErrors.confirm && <p className="text-xs text-red-600 mt-1">{pwdErrors.confirm}</p>}
+                  </div>
+                  <div className="md:col-span-3 flex justify-end space-x-3">
+                    <Button variant="outline" onClick={() => setPwdOpen(false)}>Annuler</Button>
+                    <Button onClick={handlePwdSave}>Enregistrer</Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

@@ -208,9 +208,12 @@ const getPropertyById = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: "Bien introuvable." });
     }
 
+    property.vues = (property.vues || 0) + 1;
+    await property.save();
+
     logger.info(`Bien consulté ID: ${property._id}`, {
       titre: property.titre,
-      vues: property.vues // Si vous avez un champ de visites
+      vues: property.vues
     });
 
     res.json(property);

@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import {Button} from '../components/ui/Button';
 import {Input} from '../components/ui/Input';
 import { validateEmail } from '../lib/utils';
+import Alert from '../components/common/Alert';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  const { login, loading, isAuthenticated } = useAuth();
+  const { login, loading, isAuthenticated, clearError } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +28,11 @@ const LoginPage = () => {
       navigate(from || '/dashboard', { replace: true });
     }
   }, [isAuthenticated, navigate, from]);
+
+  useEffect(() => {
+    clearError();
+    return () => clearError();
+  }, [clearError]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,8 +72,9 @@ const LoginPage = () => {
 
     if (result.success) {
       navigate(from || '/dashboard', { replace: true });
-    } else if (result.message) {
-      setErrors((prev) => ({ ...prev, general: result.message }));
+    } else {
+      const fieldErrors = result.fieldErrors || {};
+      setErrors({ ...fieldErrors, general: result.message || '' });
     }
   };
 
@@ -100,7 +107,7 @@ const LoginPage = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* ✅ Message d'erreur général (auth) */}
             {errors.general && (
-              <div className="text-red-500 text-sm text-center">{errors.general}</div>
+              <Alert type="error">{errors.general}</Alert>
             )}
 
             {/* Email */}
@@ -116,6 +123,9 @@ const LoginPage = () => {
                 className="pl-10"
               />
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              {errors.email && (
+                <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+              )}
             </div>
 
             {/* Password */}
@@ -138,6 +148,9 @@ const LoginPage = () => {
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
+              {errors.password && (
+                <p className="text-xs text-red-600 mt-1">{errors.password}</p>
+              )}
             </div>
 
             {/* Remember me & Forgot password */}

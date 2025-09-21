@@ -79,10 +79,11 @@ module.exports = {
   }),
 
   limiter: rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || `${15 * 60 * 1000}`, 10),
+    max: parseInt(process.env.RATE_LIMIT_MAX || (process.env.NODE_ENV === 'production' ? '200' : '1000'), 10),
     standardHeaders: true,
     legacyHeaders: false,
+    skipSuccessfulRequests: process.env.NODE_ENV !== 'production',
     message: {
       status: 429,
       error: 'Trop de requêtes depuis cette IP. Réessayez plus tard.'
@@ -163,8 +164,8 @@ module.exports = {
       .matches(/[0-9]/).withMessage('Doit contenir au moins un chiffre')
       .matches(/\W/).withMessage('Doit contenir au moins un caractère spécial'),
     body('role') // Nouvelle validation pour le rôle
-      .optional() // Le rôle est optionnel lors de l\'inscription standard
-      .isIn([/'client'/, /'admin'/]).withMessage('Rôle invalide'),
+      .optional() // Le rôle est optionnel lors de l'inscription standard
+      .isIn(['client','admin']).withMessage('Rôle invalide'),
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -234,6 +235,22 @@ module.exports = {
     }
   ],
 
+  // Changement de mot de passe (authentifié)
+  validateChangePassword: [
+    body('currentPassword').notEmpty().withMessage('Mot de passe actuel requis'),
+    body('newPassword')
+      .isLength({ min: 8 }).withMessage('Le mot de passe doit faire au moins 8 caractères')
+      .matches(/[A-Z]/).withMessage('Doit contenir au moins une majuscule')
+      .matches(/[a-z]/).withMessage('Doit contenir au moins une minuscule')
+      .matches(/[0-9]/).withMessage('Doit contenir au moins un chiffre')
+      .matches(/\W/).withMessage('Doit contenir au moins un caractère spécial'),
+    (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+      next();
+    }
+  ],
+
   // Limite de requêtes de réinitialisation
   resetRequestLimiter: rateLimit({
     windowMs: 60 * 60 * 1000,
@@ -251,8 +268,8 @@ module.exports = {
 };
 // Rate limiting spécialisé pour l'authentification
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // 5 tentatives par IP
+  windowMs: parseInt(process.env.AUTH_RATE_LIMIT_WINDOW_MS || `${15 * 60 * 1000}`, 10),
+  max: parseInt(process.env.AUTH_RATE_LIMIT_MAX || (process.env.NODE_ENV === 'production' ? '10' : '50'), 10),
   skipSuccessfulRequests: true,
   standardHeaders: true,
   legacyHeaders: false,
